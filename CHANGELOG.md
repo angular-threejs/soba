@@ -1,5 +1,12 @@
 
 
+### [1.0.2](https://github.com/angular-threejs/soba/compare/1.0.1...1.0.2) (2023-01-31)
+
+
+### Bug Fixes
+
+* ensure camera emits ([d344021](https://github.com/angular-threejs/soba/commit/d344021a849b4593aa25e4cc279f6639c2b15aed))
+
 ### [1.0.1](https://github.com/angular-threejs/soba/compare/1.0.0...1.0.1) (2023-01-31)
 
 
