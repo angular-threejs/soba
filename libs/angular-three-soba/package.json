@@ -3,9 +3,13 @@
     "version": "0.0.1",
     "peerDependencies": {
         "@angular/common": "^15.1.0",
-        "@angular/core": "^15.1.0"
+        "@angular/core": "^15.1.0",
+        "angular-three": "^1.0.0",
+        "three-stdlib": "^2.0.0",
+        "troika-three-text": "^0.47.0"
     },
     "dependencies": {
+        "@nrwl/devkit": "^15.0.0",
         "tslib": "^2.3.0"
     },
     "sideEffects": false

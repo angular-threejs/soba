@@ -15,7 +15,8 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "angular-three-soba": ["libs/angular-three-soba/src/index.ts"]
+            "angular-three-soba": ["libs/angular-three-soba/src/index.ts"],
+            "angular-three-soba/loaders": ["libs/angular-three-soba/loaders/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]

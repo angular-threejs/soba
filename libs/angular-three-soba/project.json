@@ -39,7 +39,12 @@
             "executor": "@nrwl/linter:eslint",
             "outputs": ["{options.outputFile}"],
             "options": {
-                "lintFilePatterns": ["libs/angular-three-soba/**/*.ts", "libs/angular-three-soba/**/*.html"]
+                "lintFilePatterns": [
+                    "libs/angular-three-soba/**/*.ts",
+                    "libs/angular-three-soba/**/*.html",
+                    "libs/angular-three-soba/loaders/**/*.ts",
+                    "libs/angular-three-soba/loaders/**/*.html"
+                ]
             }
         }
     },

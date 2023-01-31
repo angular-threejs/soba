@@ -3,5 +3,6 @@
     "dest": "../../dist/libs/angular-three-soba",
     "lib": {
         "entryFile": "src/index.ts"
-    }
+    },
+    "allowedNonPeerDependencies": ["@nrwl/devkit"]
 }
