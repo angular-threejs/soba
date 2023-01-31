@@ -1,0 +1,22 @@
+{
+    "name": "soba",
+    "version": "0.0.0",
+    "license": "MIT",
+    "scripts": {},
+    "private": true,
+    "devDependencies": {
+        "@nrwl/angular": "^15.6.3",
+        "@nrwl/nx-plugin": "^15.6.3",
+        "@nrwl/workspace": "15.6.3",
+        "@types/three": "^0.149.0",
+        "nx": "15.6.3",
+        "prettier": "^2.8.3",
+        "prettier-plugin-organize-imports": "^3.2.2",
+        "typescript": "~4.8.2"
+    },
+    "dependencies": {
+        "three": "0.148",
+        "three-stdlib": "^2.21.6",
+        "troika-three-text": "^0.47.1"
+    }
+}
