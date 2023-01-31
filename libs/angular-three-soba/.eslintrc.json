@@ -9,6 +9,7 @@
                 "@angular-eslint/directive-class-suffix": "off",
                 "@angular-eslint/component-selector": "off",
                 "@angular-eslint/component-class-suffix": "off",
+                "@angular-eslint/no-output-native": "off",
                 "@typescript-eslint/no-empty-function": "off",
                 "@typescript-eslint/ban-ts-comment": "off",
                 "@typescript-eslint/no-explicit-any": "off",

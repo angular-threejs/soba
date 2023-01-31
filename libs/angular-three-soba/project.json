@@ -43,7 +43,9 @@
                     "libs/angular-three-soba/**/*.ts",
                     "libs/angular-three-soba/**/*.html",
                     "libs/angular-three-soba/loaders/**/*.ts",
-                    "libs/angular-three-soba/loaders/**/*.html"
+                    "libs/angular-three-soba/loaders/**/*.html",
+                    "libs/angular-three-soba/controls/**/*.ts",
+                    "libs/angular-three-soba/controls/**/*.html"
                 ]
             }
         }
