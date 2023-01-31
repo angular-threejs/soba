@@ -1,5 +1,13 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
-import { injectBeforeRender, injectNgtRef, NgtArgs, NgtPush, NgtRxStore, NgtStore } from 'angular-three';
+import {
+    injectBeforeRender,
+    injectNgtRef,
+    NgtArgs,
+    NgtPush,
+    NgtRxStore,
+    NgtStore,
+    startWithUndefined,
+} from 'angular-three';
 import { combineLatest, map } from 'rxjs';
 import { OrbitControls } from 'three-stdlib';
 
@@ -71,12 +79,15 @@ export class NgtsOrbitControls extends NgtRxStore implements OnInit {
     }
 
     private setControls() {
-        this.hold(combineLatest([this.store.select('camera'), this.select('camera')]), ([defaultCamera, camera]) => {
-            const controlsCamera = camera || defaultCamera;
-            if (!this.controlsRef.nativeElement || this.controlsRef.nativeElement.object !== controlsCamera) {
-                this.controlsRef.nativeElement = new OrbitControls(controlsCamera);
+        this.hold(
+            combineLatest([this.store.select('camera'), this.select('camera').pipe(startWithUndefined())]),
+            ([defaultCamera, camera]) => {
+                const controlsCamera = camera || defaultCamera;
+                if (!this.controlsRef.nativeElement || this.controlsRef.nativeElement.object !== controlsCamera) {
+                    this.controlsRef.nativeElement = new OrbitControls(controlsCamera);
+                }
             }
-        });
+        );
     }
 
     private connectElement() {
