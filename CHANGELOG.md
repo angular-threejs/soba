@@ -1,5 +1,12 @@
 
 
+### [1.0.1](https://github.com/angular-threejs/soba/compare/1.0.0...1.0.1) (2023-01-31)
+
+
+### Bug Fixes
+
+* map generators and schematics to generators.json ([3b80b30](https://github.com/angular-threejs/soba/commit/3b80b30a5f4191b58e927aaa5eb8a537e4a1afa9))
+
 ## 1.0.0 (2023-01-31)
 
 
