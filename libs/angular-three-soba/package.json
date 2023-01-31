@@ -1,6 +1,25 @@
 {
     "name": "angular-three-soba",
-    "version": "0.0.1",
+    "version": "0.0.0-replace",
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/angular-threejs/soba"
+    },
+    "author": {
+        "name": "Chau Tran",
+        "email": "nartc7789@gmail.com",
+        "url": "https://nartc.me"
+    },
+    "description": "Utilities for Angular Three",
+    "keywords": [
+        "angular",
+        "threejs",
+        "renderer"
+    ],
+    "license": "MIT",
     "peerDependencies": {
         "@angular/common": "^15.1.0",
         "@angular/core": "^15.1.0",
@@ -12,5 +31,7 @@
         "@nrwl/devkit": "^15.0.0",
         "tslib": "^2.3.0"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "generators": "./plugin/generators.json",
+    "schematics": "./plugin/generators.json"
 }
