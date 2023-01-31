@@ -1,0 +1,46 @@
+{
+    "plugins": {
+        "@release-it/conventional-changelog": {
+            "preset": {
+                "name": "conventionalcommits",
+                "types": [
+                    {
+                        "type": "feat",
+                        "section": "Features"
+                    },
+                    {
+                        "type": "fix",
+                        "section": "Bug Fixes"
+                    },
+                    {
+                        "type": "cleanup",
+                        "section": "Cleanup"
+                    },
+                    {
+                        "type": "docs",
+                        "section": "Documentations"
+                    }
+                ]
+            },
+            "infile": "CHANGELOG.md"
+        },
+        "@release-it/bumper": {
+            "in": "libs/angular-three-soba/version.json",
+            "out": ["libs/angular-three-soba/version.json", "dist/libs/**/package.json"]
+        }
+    },
+    "git": {
+        "commitMessage": "chore: release ${version}"
+    },
+    "npm": {
+        "publish": false
+    },
+    "github": {
+        "release": true,
+        "releaseName": "Release ${version}"
+    },
+    "hooks": {
+        "before:bump": "npx nx package angular-three-soba",
+        "after:bump": ["git checkout -- package.json"]
+    }
+}
