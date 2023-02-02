@@ -56,7 +56,9 @@
                     "libs/angular-three-soba/performance/**/*.ts",
                     "libs/angular-three-soba/performance/**/*.html",
                     "libs/angular-three-soba/staging/**/*.ts",
-                    "libs/angular-three-soba/staging/**/*.html"
+                    "libs/angular-three-soba/staging/**/*.html",
+                    "libs/angular-three-soba/misc/**/*.ts",
+                    "libs/angular-three-soba/misc/**/*.html"
                 ]
             }
         },
