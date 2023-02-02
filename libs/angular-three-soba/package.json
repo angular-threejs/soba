@@ -24,6 +24,7 @@
         "@angular/common": "^15.1.0",
         "@angular/core": "^15.1.0",
         "angular-three": "^1.0.0",
+        "stats.js": "^0.17.0",
         "three-stdlib": "^2.0.0",
         "troika-three-text": "^0.47.0"
     },
