@@ -19,7 +19,8 @@
             "angular-three-soba-plugin": ["libs/plugin/src/index.ts"],
             "angular-three-soba/controls": ["libs/angular-three-soba/controls/src/index.ts"],
             "angular-three-soba/loaders": ["libs/angular-three-soba/loaders/src/index.ts"],
-            "angular-three-soba/performance": ["libs/angular-three-soba/performance/src/index.ts"]
+            "angular-three-soba/performance": ["libs/angular-three-soba/performance/src/index.ts"],
+            "angular-three-soba/staging": ["libs/angular-three-soba/staging/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]
