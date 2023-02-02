@@ -26,6 +26,7 @@ specifiers:
   '@nrwl/workspace': 15.6.3
   '@release-it/bumper': ^4.0.2
   '@release-it/conventional-changelog': ^5.1.1
+  '@rx-angular/state': ^1.7.0
   '@swc-node/register': ^1.4.2
   '@swc/cli': ~0.1.55
   '@swc/core': ^1.2.173
@@ -71,6 +72,7 @@ dependencies:
   '@angular/platform-browser': 15.1.2_d5cqipbc22ng45bbz7rblks63q
   '@angular/platform-browser-dynamic': 15.1.2_nvxdb5l45salvpcyi4ujzyiawy
   '@angular/router': 15.1.2_2e65tvtyrwy7yijl6ersdz3qky
+  '@rx-angular/state': 1.7.0_yrxudrhqhfsr77zbx4zjncmvbq
   '@swc/helpers': 0.4.14
   angular-three: 1.2.3_gmvrvzyjxaio24owndr4b7nq4m
   rxjs: 7.8.0

@@ -61,6 +61,7 @@
         "@angular/platform-browser": "~15.1.2",
         "@angular/platform-browser-dynamic": "~15.1.2",
         "@angular/router": "~15.1.2",
+        "@rx-angular/state": "^1.7.0",
         "@swc/helpers": "~0.4.11",
         "angular-three": "^1.2.3",
         "rxjs": "~7.8.0",
