@@ -8,4 +8,5 @@ export * from './lib/environment/environment';
 export * from './lib/float/float';
 export * from './lib/sky/sky';
 export * from './lib/sparkles/sparkles';
+export * from './lib/stage/stage';
 export * from './lib/stars/stars';

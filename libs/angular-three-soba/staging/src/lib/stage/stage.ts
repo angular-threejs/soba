@@ -10,11 +10,12 @@ import {
     OnChanges,
     Output,
 } from '@angular/core';
+import { extend, NgtArgs, NgtRxStore } from 'angular-three';
 import { map } from 'rxjs';
 import { AmbientLight, Group, PointLight, SpotLight, Vector2 } from 'three';
 import { NgtsAccumulativeShadows } from '../accumulative-shadows/accumulative-shadows';
 import { NgtsRandomizedLights } from '../accumulative-shadows/randomized-lights';
-import { NgtsBounds } from '../bounds/bounds';
+import { NgtsBounds, NGTS_BOUNDS_API } from '../bounds/bounds';
 import { NgtsCenter } from '../center/center';
 import { NgtsContactShadows } from '../contact-shadows/contact-shadows';
 import { NgtsEnvironmentPresetsType } from '../environment/assets';
@@ -79,14 +80,14 @@ type NgtsStageProps = {
     standalone: true,
 })
 export class NgtsStageRefit implements OnChanges {
-    readonly #boundsApi = injectNgtsBoundsApi();
+    private readonly boundsApi = inject(NGTS_BOUNDS_API);
 
     @Input() radius = 0;
     @Input() adjustCamera = true;
 
     ngOnChanges() {
         if (this.adjustCamera) {
-            this.#boundsApi.refresh().clip().fit();
+            this.boundsApi.refresh().clip().fit();
         }
     }
 }
@@ -99,7 +100,7 @@ extend({ AmbientLight, SpotLight, Vector2, PointLight, Group });
     template: `
         <ngt-ambient-light [intensity]="get('intensity')! / 3" />
         <ngt-spot-light
-            penumbra="1"
+            [penumbra]="1"
             [position]="get('spotLightPosition')"
             [intensity]="get('intensity')! * 2"
             [castShadow]="!!get('shadows')"
@@ -167,7 +168,7 @@ extend({ AmbientLight, SpotLight, Vector2, PointLight, Group });
                 [colorBlend]="get('shadowsInfo').colorBlend"
                 [resolution]="get('shadowsInfo').resolution"
             >
-                <ngts-randomized-light
+                <ngts-randomized-lights
                     [amount]="get('shadowsInfo').amount ?? 8"
                     [radius]="get('shadowsInfo').radius ?? get('radius')"
                     [ambient]="get('shadowsInfo').ambient ?? 0.5"
@@ -205,13 +206,13 @@ extend({ AmbientLight, SpotLight, Vector2, PointLight, Group });
         NgIf,
         NgtsContactShadows,
         NgtsAccumulativeShadows,
-        NgtsRandomizedLight,
+        NgtsRandomizedLights,
         NgtsEnvironment,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class NgtsStage extends NgtRxStore<NgtsStageProps> {
-    readonly #cdr = inject(ChangeDetectorRef);
+    private readonly cdr = inject(ChangeDetectorRef);
     readonly Number = Number;
 
     @Input() set preset(preset: NgtsStageProps['preset']) {
@@ -325,7 +326,7 @@ export class NgtsStage extends NgtRxStore<NgtsStageProps> {
     }) {
         const { boundingSphere, width, height, depth } = props;
         this.set({ radius: boundingSphere.radius, width, height, depth });
-        this.#cdr.detectChanges();
+        this.cdr.detectChanges();
         if (this.centered.observed) this.centered.emit(props);
     }
 }

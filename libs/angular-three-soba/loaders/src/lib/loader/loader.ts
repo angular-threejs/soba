@@ -43,9 +43,10 @@ export class NgtsLoader extends NgtRxStore implements OnInit {
         this.select('innerClass').pipe(startWithUndefined()),
         this.select('barClass').pipe(startWithUndefined()),
         this.select('dataClass').pipe(startWithUndefined()),
-        combineLatest([this.progress.select('progress'), this.progress.select('active')]),
+        this.progress.select('progress'),
+        this.progress.select('active'),
     ]).pipe(
-        map(([shown, containerClass, innerClass, barClass, dataClass, [progress, active]]) => {
+        map(([shown, containerClass, innerClass, barClass, dataClass, progress, active]) => {
             return { shown, containerClass, innerClass, barClass, dataClass, progress, active };
         })
     );

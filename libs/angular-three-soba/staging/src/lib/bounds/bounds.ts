@@ -206,13 +206,17 @@ function boundsApiFactory(bounds: NgtsBounds) {
         bounds.boundsRef.$.pipe(
             switchMap(() =>
                 combineLatest([
-                    combineLatest([bounds.select('clip'), bounds.select('fit'), bounds.select('observe')]),
-                    combineLatest([store.select('camera'), store.select('controls'), store.select('size')]),
+                    bounds.select('clip'),
+                    bounds.select('fit'),
+                    bounds.select('observe'),
+                    store.select('camera'),
+                    store.select('controls'),
+                    store.select('size'),
                     bounds.boundsRef.children$(),
                 ])
             )
         ),
-        ([[clip, fit, observe]]) => {
+        ([clip, fit, observe]) => {
             if (observe || count++ === 0) {
                 api.refresh();
                 if (fit) api.fit();

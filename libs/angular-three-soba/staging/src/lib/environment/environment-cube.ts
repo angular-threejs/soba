@@ -24,14 +24,12 @@ export class NgtsEnvironmentCube extends NgtsEnvironmentInputs implements OnInit
         this.effect(
             combineLatest([
                 this.store.select('scene'),
-                combineLatest([
-                    this.select('scene').pipe(startWithUndefined()),
-                    this.select('background'),
-                    this.select('blur').pipe(startWithUndefined()),
-                ]),
+                this.select('scene').pipe(startWithUndefined()),
+                this.select('background'),
+                this.select('blur').pipe(startWithUndefined()),
                 this.textureRef.$,
             ]),
-            ([defaultScene, [scene, background, blur], texture]) => {
+            ([defaultScene, scene, background, blur, texture]) => {
                 return setEnvProps(background, scene, defaultScene, texture, blur);
             }
         );
