@@ -1,6 +1,5 @@
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { selectSlice } from '@rx-angular/state';
 import { NgtPush, NgtRxStore, startWithUndefined } from 'angular-three';
 import { combineLatest, map, of, switchMap, timer, withLatestFrom } from 'rxjs';
 import { injectNgtsProgress } from '../progress/progress';
@@ -36,7 +35,7 @@ const defaultDataInterpolation = (p: number) => `Loading ${p.toFixed(2)}%`;
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NgtsLoader extends NgtRxStore implements OnInit {
-    readonly #progress = injectNgtsProgress();
+    private readonly progress = injectNgtsProgress();
 
     readonly vm$ = combineLatest([
         this.select('shown'),
@@ -44,9 +43,9 @@ export class NgtsLoader extends NgtRxStore implements OnInit {
         this.select('innerClass').pipe(startWithUndefined()),
         this.select('barClass').pipe(startWithUndefined()),
         this.select('dataClass').pipe(startWithUndefined()),
-        this.#progress.select(selectSlice(['progress', 'active'])),
+        combineLatest([this.progress.select('progress'), this.progress.select('active')]),
     ]).pipe(
-        map(([shown, containerClass, innerClass, barClass, dataClass, { progress, active }]) => {
+        map(([shown, containerClass, innerClass, barClass, dataClass, [progress, active]]) => {
             return { shown, containerClass, innerClass, barClass, dataClass, progress, active };
         })
     );
@@ -68,30 +67,25 @@ export class NgtsLoader extends NgtRxStore implements OnInit {
     }
 
     @Input() set dataInterpolation(dataInterpolation: (value: number) => string) {
-        this.set({
-            dataInterpolation: dataInterpolation === undefined ? this.get('dataInterpolation') : dataInterpolation,
-        });
+        this.set({ dataInterpolation });
     }
 
     @Input() set initialState(initialState: (value: boolean) => boolean) {
-        this.set({ initialState: initialState === undefined ? this.get('initialState') : initialState });
+        this.set({ initialState });
     }
 
     @ViewChild('progressSpanRef') progressSpanRef?: ElementRef<HTMLSpanElement>;
 
     override initialize(): void {
         super.initialize();
-        this.set({
-            dataInterpolation: defaultDataInterpolation,
-            initialState: (active: boolean) => active,
-        });
+        this.set({ dataInterpolation: defaultDataInterpolation, initialState: (active: boolean) => active });
     }
 
     ngOnInit() {
-        this.set({ shown: this.get('initialState')(this.#progress.get('active')) });
+        this.set({ shown: this.get('initialState')(this.progress.get('active')) });
         this.connect(
             'shown',
-            this.#progress.select('active').pipe(
+            this.progress.select('active').pipe(
                 withLatestFrom(this.select('shown')),
                 switchMap(([active, shown]) => {
                     if (shown !== active) return timer(300).pipe(map(() => active));
@@ -104,7 +98,7 @@ export class NgtsLoader extends NgtRxStore implements OnInit {
         let rafId: ReturnType<typeof requestAnimationFrame>;
 
         this.effect(
-            combineLatest([this.select('dataInterpolation'), this.#progress.select('progress')]),
+            combineLatest([this.select('dataInterpolation'), this.progress.select('progress')]),
             ([dataInterpolation, progress]) => {
                 const updateProgress = () => {
                     if (!this.progressSpanRef?.nativeElement) return;

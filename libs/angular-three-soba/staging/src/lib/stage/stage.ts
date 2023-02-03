@@ -13,8 +13,8 @@ import {
 import { map } from 'rxjs';
 import { AmbientLight, Group, PointLight, SpotLight, Vector2 } from 'three';
 import { NgtsAccumulativeShadows } from '../accumulative-shadows/accumulative-shadows';
-import { NgtsRandomizedLight } from '../accumulative-shadows/randomized-lights';
-import { injectNgtsBoundsApi, NgtsBounds } from '../bounds/bounds';
+import { NgtsRandomizedLights } from '../accumulative-shadows/randomized-lights';
+import { NgtsBounds } from '../bounds/bounds';
 import { NgtsCenter } from '../center/center';
 import { NgtsContactShadows } from '../contact-shadows/contact-shadows';
 import { NgtsEnvironmentPresetsType } from '../environment/assets';
@@ -41,7 +41,7 @@ const presets = {
 };
 
 type NgtsStageShadows = Partial<NgtsAccumulativeShadows> &
-    Partial<NgtsRandomizedLight> &
+    Partial<NgtsRandomizedLights> &
     Partial<NgtsContactShadows> & {
         type: 'contact' | 'accumulative';
         /** Shadow plane offset, default: 0 */
