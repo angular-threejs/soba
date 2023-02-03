@@ -265,11 +265,11 @@ extend({ Group });
     selector: 'ngts-bounds',
     standalone: true,
     template: `
-        <ngt-group ngtCompound [ref]="groupRef">
+        <ngt-group ngtCompound [ref]="boundsRef">
             <ng-content />
         </ngt-group>
     `,
-    providers: [{ provide: NGTS_BOUNDS_API, useFactory: boundsApiFactory, deps: [NgtsBounds] }, RxActionFactory],
+    providers: [{ provide: NGTS_BOUNDS_API, useFactory: boundsApiFactory, deps: [NgtsBounds] }],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class NgtsBounds extends NgtRxStore implements OnInit {
