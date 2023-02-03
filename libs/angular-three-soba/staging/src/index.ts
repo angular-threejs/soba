@@ -3,3 +3,4 @@ export { NgtsRandomizedLights } from './lib/accumulative-shadows/randomized-ligh
 export * from './lib/center/center';
 export * from './lib/contact-shadows/contact-shadows';
 export * from './lib/float/float';
+export * from './lib/sky/sky';
