@@ -1,5 +1,12 @@
 
 
+## [1.2.0](https://github.com/angular-threejs/soba/compare/1.1.0...1.2.0) (2023-02-05)
+
+
+### Features
+
+* update peer dep ([db3a479](https://github.com/angular-threejs/soba/commit/db3a479c2bd68831fb4b6b86d0094bb6b63a8122))
+
 ## [1.1.0](https://github.com/angular-threejs/soba/compare/1.0.2...1.1.0) (2023-02-03)
 
 
