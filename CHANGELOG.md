@@ -1,5 +1,20 @@
 
 
+## [1.3.0](https://github.com/angular-threejs/soba/compare/1.2.0...1.3.0) (2023-02-06)
+
+
+### Features
+
+* add cameras ([76783b0](https://github.com/angular-threejs/soba/commit/76783b0d19777d442672c9e8bb43e69ddececa51))
+* add fbo ([2ffcb40](https://github.com/angular-threejs/soba/commit/2ffcb40d137039b4f1b93a8d931a5901974cd9ee))
+
+
+### Documentations
+
+* add bounds story ([28307b5](https://github.com/angular-threejs/soba/commit/28307b53a7d49f8009c427180a08502d84f8f68b))
+* add contact shadows story ([2ffd774](https://github.com/angular-threejs/soba/commit/2ffd774246ebac9db425f04bf5214fdc4d05c2e2))
+* add enviroment story ([1dd8ac7](https://github.com/angular-threejs/soba/commit/1dd8ac7b0f78ec6134e0094a7b18fe7d1d242bb1))
+
 ## [1.2.0](https://github.com/angular-threejs/soba/compare/1.1.0...1.2.0) (2023-02-05)
 
 
