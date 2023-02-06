@@ -3,6 +3,7 @@ export { NgtsRandomizedLights } from './lib/accumulative-shadows/randomized-ligh
 export * from './lib/bounds/bounds';
 export * from './lib/camera-shake/camera-shake';
 export * from './lib/center/center';
+export * from './lib/cloud/cloud';
 export * from './lib/contact-shadows/contact-shadows';
 export * from './lib/environment/assets';
 export * from './lib/environment/environment';

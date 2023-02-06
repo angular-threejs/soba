@@ -62,7 +62,9 @@
                     "libs/angular-three-soba/shaders/**/*.ts",
                     "libs/angular-three-soba/shaders/**/*.html",
                     "libs/angular-three-soba/cameras/**/*.ts",
-                    "libs/angular-three-soba/cameras/**/*.html"
+                    "libs/angular-three-soba/cameras/**/*.html",
+                    "libs/angular-three-soba/abstractions/**/*.ts",
+                    "libs/angular-three-soba/abstractions/**/*.html"
                 ]
             }
         },
