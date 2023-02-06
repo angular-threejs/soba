@@ -1,5 +1,12 @@
 
 
+### [1.3.1](https://github.com/angular-threejs/soba/compare/1.3.0...1.3.1) (2023-02-06)
+
+
+### Bug Fixes
+
+* ensure stats is newable (workaround for now) ([dc35d5d](https://github.com/angular-threejs/soba/commit/dc35d5d4f559d71ba34101c5b5b5e51f32cd82f1))
+
 ## [1.3.0](https://github.com/angular-threejs/soba/compare/1.2.0...1.3.0) (2023-02-06)
 
 
