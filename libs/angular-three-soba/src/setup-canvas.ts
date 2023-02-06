@@ -88,15 +88,13 @@ class StorybookScene extends NgtRxStore implements OnInit, OnDestroy {
     private ref?: ComponentRef<unknown>;
 
     ngOnInit() {
-        this.ref = this.anchor.createComponent(this.story);
+        const ref = (this.ref = this.anchor.createComponent(this.story));
 
         this.hold(this.inputs$, (inputs) => {
-            if (this.ref) {
-                for (const [key, value] of Object.entries(inputs)) {
-                    this.ref.setInput(key, value);
-                }
-                this.ref.changeDetectorRef.detectChanges();
+            for (const key of Object.keys(inputs)) {
+                ref.setInput(key, inputs[key]);
             }
+            ref.changeDetectorRef.detectChanges();
         });
 
         this.ref.changeDetectorRef.detectChanges();
@@ -120,19 +118,6 @@ export class StorybookSetup extends NgtRxStore implements OnInit, OnDestroy {
         this.set({ inputs });
     }
 
-    get canvasOptions(): CanvasOptions {
-        const mergedOptions = {
-            ...defaultCanvasOptions,
-            camera: { ...defaultCanvasOptions.camera, ...this.options.camera },
-            performance: { ...defaultCanvasOptions.performance, ...this.options.performance },
-            whiteBackground: this.options.whiteBackground,
-            controls: this.options.controls,
-            lights: this.options.lights,
-            compoundPrefixes: this.options.compoundPrefixes,
-        } as Required<CanvasOptions>;
-        return mergedOptions;
-    }
-
     @ViewChild('anchor', { read: ViewContainerRef, static: true })
     anchor!: ViewContainerRef;
 
@@ -148,7 +133,7 @@ export class StorybookSetup extends NgtRxStore implements OnInit, OnDestroy {
     ngOnInit() {
         this.refEnvInjector = createEnvironmentInjector(
             [
-                { provide: CANVAS_OPTIONS, useValue: this.canvasOptions },
+                { provide: CANVAS_OPTIONS, useValue: this.options },
                 { provide: STORY_COMPONENT, useValue: this.story },
                 { provide: STORY_INPUTS, useValue: this.select('inputs').pipe(debounceTime(0)) },
             ],
@@ -156,9 +141,9 @@ export class StorybookSetup extends NgtRxStore implements OnInit, OnDestroy {
         );
         this.ref = this.anchor.createComponent(NgtCanvas, { environmentInjector: this.refEnvInjector });
         this.ref.setInput('shadows', true);
-        this.ref.setInput('performance', this.canvasOptions.performance);
-        this.ref.setInput('camera', this.canvasOptions.camera);
-        this.ref.setInput('compoundPrefixes', this.canvasOptions.compoundPrefixes);
+        this.ref.setInput('performance', this.options.performance);
+        this.ref.setInput('camera', this.options.camera);
+        this.ref.setInput('compoundPrefixes', this.options.compoundPrefixes);
         this.ref.setInput('sceneGraph', StorybookScene);
         this.ref.changeDetectorRef.detectChanges();
     }
@@ -189,10 +174,10 @@ export function makeCanvasOptions(options: DeepPartial<CanvasOptions> = {}) {
         ...defaultCanvasOptions,
         camera: { ...defaultCanvasOptions.camera, ...(options.camera || {}) },
         performance: { ...defaultCanvasOptions.performance, ...(options.performance || {}) },
-        whiteBackground: options.whiteBackground || defaultCanvasOptions.whiteBackground,
-        controls: options.controls || defaultCanvasOptions.controls,
-        lights: options.lights || defaultCanvasOptions.lights,
-        compoundPrefixes: options.compoundPrefixes || defaultCanvasOptions.compoundPrefixes,
+        whiteBackground: options.whiteBackground ?? defaultCanvasOptions.whiteBackground,
+        controls: options.controls ?? defaultCanvasOptions.controls,
+        lights: options.lights ?? defaultCanvasOptions.lights,
+        compoundPrefixes: options.compoundPrefixes ?? defaultCanvasOptions.compoundPrefixes,
     } as Required<CanvasOptions>;
     return mergedOptions;
 }
