@@ -57,18 +57,18 @@ export class NgtsOrthographicCamera extends NgtsCamera<THREE.OrthographicCamera>
     }
 
     readonly left$ = combineLatest([this.select('left'), this.store.select('size')]).pipe(
-        map(([left, size]) => left ?? size.width / -2)
+        map(([left, size]) => left || size.width / -2)
     );
 
     readonly right$ = combineLatest([this.select('right'), this.store.select('size')]).pipe(
-        map(([right, size]) => right ?? size.width / 2)
+        map(([right, size]) => right || size.width / 2)
     );
 
     readonly top$ = combineLatest([this.select('top'), this.store.select('size')]).pipe(
-        map(([top, size]) => top ?? size.height / 2)
+        map(([top, size]) => top || size.height / 2)
     );
 
     readonly bottom$ = combineLatest([this.select('bottom'), this.store.select('size')]).pipe(
-        map(([bottom, size]) => bottom ?? size.height / -2)
+        map(([bottom, size]) => bottom || size.height / -2)
     );
 }
