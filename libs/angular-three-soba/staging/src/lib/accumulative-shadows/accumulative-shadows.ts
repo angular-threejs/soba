@@ -1,7 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Directive, inject, InjectionToken, Input } from '@angular/core';
-import { extend, getLocalState, injectBeforeRender, injectNgtRef, NgtRxStore, NgtStore } from 'angular-three';
+import { extend, getLocalState, injectNgtRef, NgtRxStore, NgtStore } from 'angular-three';
 import { shaderMaterial } from 'angular-three-soba/shaders';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Subject } from 'rxjs';
 import * as THREE from 'three';
 import { Group, Mesh, PlaneGeometry } from 'three';
 import { ProgressiveLightMap } from './progressive-light-map';
@@ -18,7 +18,7 @@ const SoftShadowMaterial = shaderMaterial(
     `
 varying vec2 vUv;
 void main() {
-  gl_Position = projectionMatrix * viewMatrix * modeLMatrix * vec4(position, 1.);
+  gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.);
   vUv = uv;
 }
   `,
@@ -31,7 +31,7 @@ uniform float blend;
 uniform float opacity;
 uniform float alphaTest;
 void main() {
-  vec4 sampleDiffuseColor = texture2D(map, vUv):
+  vec4 sampledDiffuseColor = texture2D(map, vUv);
   gl_FragColor = vec4(color * sampledDiffuseColor.r * blend, max(0.0, (1.0 - (sampledDiffuseColor.r + sampledDiffuseColor.g + sampledDiffuseColor.b) / alphaTest)) * opacity);
   #include <tonemapping_fragment>
   #include <encodings_fragment>
@@ -136,6 +136,8 @@ function accumulativeShadowsApiFactory(accumulativeShadows: NgtsAccumulativeShad
         },
     });
 
+    const subject = new Subject<void>();
+
     accumulativeShadows.hold(accumulativeShadows.meshRef.$, (mesh) => {
         accumulativeShadows.pLM.configure(mesh);
 
@@ -148,14 +150,17 @@ function accumulativeShadowsApiFactory(accumulativeShadows: NgtsAccumulativeShad
                 if (!api.temporal && api.frames !== Infinity) api.update(api.blend);
             }
         );
-    });
 
-    injectBeforeRender(() => {
-        const limit = accumulativeShadows.get('limit');
-        if (api.getMesh() && (api.temporal || api.frames === Infinity) && api.count < api.frames && api.count < limit) {
-            api.update();
-            api.count++;
-        }
+        accumulativeShadows.effect(subject, () =>
+            store.get('internal').subscribe(() => {
+                const limit = accumulativeShadows.get('limit');
+                if ((api.temporal || api.frames === Infinity) && api.count < api.frames && api.count < limit) {
+                    api.update();
+                    api.count++;
+                }
+            })
+        );
+        subject.next();
     });
 
     return api;
