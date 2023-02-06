@@ -4,6 +4,7 @@
     "license": "MIT",
     "scripts": {
         "release": "dotenv release-it --",
+        "start": "npx nx storybook angular-three-soba",
         "build-storybook": "npx nx build-storybook angular-three-soba"
     },
     "private": true,
