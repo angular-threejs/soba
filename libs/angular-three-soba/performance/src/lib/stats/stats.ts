@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Directive, inject, Input, OnInit } from '@angular/core';
-import { addAfterEffect, addEffect, NgtInjectedRef, NgtRxStore, startWithUndefined } from 'angular-three';
+import { addAfterEffect, addEffect, NgtAnyRecord, NgtInjectedRef, NgtRxStore, startWithUndefined } from 'angular-three';
 import { combineLatest } from 'rxjs';
 import * as Stats from 'stats.js';
 
@@ -10,7 +10,9 @@ import * as Stats from 'stats.js';
 })
 export class NgtsStats extends NgtRxStore implements OnInit {
     private readonly document = inject(DOCUMENT);
-    private readonly stats = new Stats();
+    private readonly stats = (Stats as NgtAnyRecord)['default']
+        ? new (Stats as NgtAnyRecord)['default']()
+        : new Stats();
 
     @Input() set showPanel(showPanel: number) {
         this.set({ showPanel: showPanel === undefined ? this.get('showPanel') : showPanel });
