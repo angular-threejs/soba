@@ -1,5 +1,12 @@
 
 
+### [1.3.2](https://github.com/angular-threejs/soba/compare/1.3.1...1.3.2) (2023-02-06)
+
+
+### Bug Fixes
+
+* allow stats to position right or left ([a348fde](https://github.com/angular-threejs/soba/commit/a348fde0b9219986a80f487e66a5527989ba2fe9))
+
 ### [1.3.1](https://github.com/angular-threejs/soba/compare/1.3.0...1.3.1) (2023-02-06)
 
 
