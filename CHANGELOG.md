@@ -1,5 +1,21 @@
 
 
+## [1.4.0](https://github.com/angular-threejs/soba/compare/1.3.2...1.4.0) (2023-02-06)
+
+
+### Features
+
+* add camera shake ([a31ec73](https://github.com/angular-threejs/soba/commit/a31ec73fc9eb5d495b8667e32590c658e9e9c9d9))
+* add cloud and billboard ([75aa0af](https://github.com/angular-threejs/soba/commit/75aa0af95524d16c735f6530d825a44df214dbc3))
+* add gizmo ([e0f362f](https://github.com/angular-threejs/soba/commit/e0f362fc0ce894f5d18fefabf78fdcb60828b3b4))
+* add text ([3ae76f4](https://github.com/angular-threejs/soba/commit/3ae76f426696024bb34b694572782f228f1d6245))
+* add text 3d ([66ae208](https://github.com/angular-threejs/soba/commit/66ae20884619136a1729632e6deef8b7dc40cb40))
+
+
+### Documentations
+
+* add text stories ([7705ba8](https://github.com/angular-threejs/soba/commit/7705ba828fea1b124a8ce357a6933c99a5909a7e))
+
 ### [1.3.2](https://github.com/angular-threejs/soba/compare/1.3.1...1.3.2) (2023-02-06)
 
 
