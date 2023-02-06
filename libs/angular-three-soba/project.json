@@ -60,7 +60,9 @@
                     "libs/angular-three-soba/misc/**/*.ts",
                     "libs/angular-three-soba/misc/**/*.html",
                     "libs/angular-three-soba/shaders/**/*.ts",
-                    "libs/angular-three-soba/shaders/**/*.html"
+                    "libs/angular-three-soba/shaders/**/*.html",
+                    "libs/angular-three-soba/cameras/**/*.ts",
+                    "libs/angular-three-soba/cameras/**/*.html"
                 ]
             }
         },
