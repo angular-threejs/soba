@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
-import { Meta, moduleMetadata, Story } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { extend } from 'angular-three';
 import { NgtsText } from 'angular-three-soba/abstractions';
 import { DoubleSide, MeshBasicMaterial } from 'three';
@@ -176,110 +176,116 @@ export default {
     decorators: [moduleMetadata({ imports: [StorybookSetup] })],
 } as Meta;
 
-export const Default: Story = (args) => ({
-    props: {
-        options: makeCanvasOptions({ camera: { position: [0, 0, 200] } }),
-        story: DefaultTextStory,
-        inputs: args,
+export const Default: StoryObj = {
+    render: (args) => ({
+        props: {
+            options: makeCanvasOptions({ camera: { position: [0, 0, 200] } }),
+            story: DefaultTextStory,
+            inputs: args,
+        },
+        template: `
+    <storybook-setup [options]="options" [story]="story" [inputs]="inputs" />
+        `,
+    }),
+    args: {
+        text: `LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE
+          MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO
+          CONSEQUAT. DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.
+          EXCEPTEUR SINT OCCAECAT CUPIDATAT NON PROIDENT, SUNT IN CULPA QUI OFFICIA DESERUNT MOLLIT ANIM ID EST LABORUM.`,
+        color: '#ec2d2d',
     },
-    template: `
-<storybook-setup [options]="options" [story]="story" [inputs]="inputs" />
-    `,
-});
-
-Default.args = {
-    text: `LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE
-      MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO
-      CONSEQUAT. DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.
-      EXCEPTEUR SINT OCCAECAT CUPIDATAT NON PROIDENT, SUNT IN CULPA QUI OFFICIA DESERUNT MOLLIT ANIM ID EST LABORUM.`,
-    color: '#ec2d2d',
 };
 
-export const Outline: Story = (args) => ({
-    props: {
-        options: makeCanvasOptions({ camera: { position: [0, 0, 200] } }),
-        story: OutlineTextStory,
-        inputs: args,
+export const Outline: StoryObj = {
+    render: (args) => ({
+        props: {
+            options: makeCanvasOptions({ camera: { position: [0, 0, 200] } }),
+            story: OutlineTextStory,
+            inputs: args,
+        },
+        template: `
+    <storybook-setup [options]="options" [story]="story" [inputs]="inputs" />
+        `,
+    }),
+    args: {
+        text: `LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE
+          MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO
+          CONSEQUAT. DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.
+          EXCEPTEUR SINT OCCAECAT CUPIDATAT NON PROIDENT, SUNT IN CULPA QUI OFFICIA DESERUNT MOLLIT ANIM ID EST LABORUM.`,
     },
-    template: `
-<storybook-setup [options]="options" [story]="story" [inputs]="inputs" />
-    `,
-});
-
-Outline.args = {
-    text: `LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE
-      MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO
-      CONSEQUAT. DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.
-      EXCEPTEUR SINT OCCAECAT CUPIDATAT NON PROIDENT, SUNT IN CULPA QUI OFFICIA DESERUNT MOLLIT ANIM ID EST LABORUM.`,
 };
 
-export const Stroke: Story = (args) => ({
-    props: {
-        options: makeCanvasOptions({ camera: { position: [0, 0, 200] } }),
-        story: StrokeTextStory,
-        inputs: args,
+export const Stroke: StoryObj = {
+    render: (args) => ({
+        props: {
+            options: makeCanvasOptions({ camera: { position: [0, 0, 200] } }),
+            story: StrokeTextStory,
+            inputs: args,
+        },
+        template: `
+    <storybook-setup [options]="options" [story]="story" [inputs]="inputs" />
+        `,
+    }),
+    args: {
+        text: `LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE
+          MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO
+          CONSEQUAT. DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.
+          EXCEPTEUR SINT OCCAECAT CUPIDATAT NON PROIDENT, SUNT IN CULPA QUI OFFICIA DESERUNT MOLLIT ANIM ID EST LABORUM.`,
     },
-    template: `
-<storybook-setup [options]="options" [story]="story" [inputs]="inputs" />
-    `,
-});
-
-Stroke.args = {
-    text: `LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE
-      MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO
-      CONSEQUAT. DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.
-      EXCEPTEUR SINT OCCAECAT CUPIDATAT NON PROIDENT, SUNT IN CULPA QUI OFFICIA DESERUNT MOLLIT ANIM ID EST LABORUM.`,
 };
 
-export const Shadow: Story = (args) => ({
-    props: {
-        options: makeCanvasOptions({ camera: { position: [0, 0, 200] } }),
-        story: ShadowTextStory,
-        inputs: args,
+export const Shadow: StoryObj = {
+    render: (args) => ({
+        props: {
+            options: makeCanvasOptions({ camera: { position: [0, 0, 200] } }),
+            story: ShadowTextStory,
+            inputs: args,
+        },
+        template: `
+    <storybook-setup [options]="options" [story]="story" [inputs]="inputs" />
+        `,
+    }),
+    args: {
+        text: `LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE
+          MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO
+          CONSEQUAT. DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.
+          EXCEPTEUR SINT OCCAECAT CUPIDATAT NON PROIDENT, SUNT IN CULPA QUI OFFICIA DESERUNT MOLLIT ANIM ID EST LABORUM.`,
     },
-    template: `
-<storybook-setup [options]="options" [story]="story" [inputs]="inputs" />
-    `,
-});
-
-Shadow.args = {
-    text: `LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE
-      MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO
-      CONSEQUAT. DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.
-      EXCEPTEUR SINT OCCAECAT CUPIDATAT NON PROIDENT, SUNT IN CULPA QUI OFFICIA DESERUNT MOLLIT ANIM ID EST LABORUM.`,
 };
 
-export const LTR: Story = (args) => ({
-    props: {
-        options: makeCanvasOptions({ camera: { position: [0, 0, 200] } }),
-        story: LTRTextStory,
-        inputs: args,
+export const LTR: StoryObj = {
+    render: (args) => ({
+        props: {
+            options: makeCanvasOptions({ camera: { position: [0, 0, 200] } }),
+            story: LTRTextStory,
+            inputs: args,
+        },
+        template: `
+    <storybook-setup [options]="options" [story]="story" [inputs]="inputs" />
+        `,
+    }),
+    args: {
+        text: `ان عدة الشهور عند الله اثنا عشر شهرا في كتاب الله يوم خلق السماوات والارض SOME LATIN TEXT HERE منها اربعة حرم
+            ذلك الدين القيم فلاتظلموا فيهن انفسكم وقاتلوا المشركين كافة كما يقاتلونكم كافة واعلموا ان الله مع المتقين`,
     },
-    template: `
-<storybook-setup [options]="options" [story]="story" [inputs]="inputs" />
-    `,
-});
-
-LTR.args = {
-    text: `ان عدة الشهور عند الله اثنا عشر شهرا في كتاب الله يوم خلق السماوات والارض SOME LATIN TEXT HERE منها اربعة حرم
-        ذلك الدين القيم فلاتظلموا فيهن انفسكم وقاتلوا المشركين كافة كما يقاتلونكم كافة واعلموا ان الله مع المتقين`,
 };
 
-export const CustomMaterial: Story = (args) => ({
-    props: {
-        options: makeCanvasOptions({ camera: { position: [0, 0, 200] } }),
-        story: CustomMaterialTextStory,
-        inputs: args,
+export const CustomMaterial: StoryObj = {
+    render: (args) => ({
+        props: {
+            options: makeCanvasOptions({ camera: { position: [0, 0, 200] } }),
+            story: CustomMaterialTextStory,
+            inputs: args,
+        },
+        template: `
+    <storybook-setup [options]="options" [story]="story" [inputs]="inputs" />
+        `,
+    }),
+    args: {
+        text: `LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE
+          MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO
+          CONSEQUAT. DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.
+          EXCEPTEUR SINT OCCAECAT CUPIDATAT NON PROIDENT, SUNT IN CULPA QUI OFFICIA DESERUNT MOLLIT ANIM ID EST LABORUM.`,
+        color: 'turquoise',
     },
-    template: `
-<storybook-setup [options]="options" [story]="story" [inputs]="inputs" />
-    `,
-});
-
-CustomMaterial.args = {
-    text: `LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE
-      MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO
-      CONSEQUAT. DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.
-      EXCEPTEUR SINT OCCAECAT CUPIDATAT NON PROIDENT, SUNT IN CULPA QUI OFFICIA DESERUNT MOLLIT ANIM ID EST LABORUM.`,
-    color: 'turquoise',
 };

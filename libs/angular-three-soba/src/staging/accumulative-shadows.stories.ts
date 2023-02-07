@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, OnInit } from '@angular/core';
-import { Meta, moduleMetadata, Story } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
 import { applyProps, extend, NgtArgs, NgtPush, NgtRxStore } from 'angular-three';
 import { NgtsOrbitControls } from 'angular-three-soba/controls';
 import { injectNgtsGLTFLoader } from 'angular-three-soba/loaders';
@@ -84,7 +84,7 @@ export default {
     decorators: [moduleMetadata({ imports: [StorybookSetup] })],
 } as Meta;
 
-export const Default: Story = () => ({
+export const Default: StoryFn = () => ({
     props: {
         story: DefaultAccumulativeShadowsStory,
         options: makeCanvasOptions({ compoundPrefixes: ['Suzi'] }),

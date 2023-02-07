@@ -1,6 +1,6 @@
 import { NgIf } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
-import { Meta, moduleMetadata, Story } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { NgtArgs, NgtPush } from 'angular-three';
 import {
     NgtsGizmoHelper,
@@ -154,19 +154,17 @@ const argTypes = {
     textColor: { ...colorArgType, ...viewcubeTable },
 };
 
-export const Default: Story = (args) => ({
-    props: {
-        story: DefaultGizmoHelperStory,
-        inputs: args,
-        options: makeCanvasOptions({
-            controls: false,
-            camera: { position: [0, 0, 10] },
-        }),
-    },
-    template: `
-<storybook-setup [story]="story" [inputs]="inputs" [options]="options" />
-    `,
-});
-
-Default.args = args;
-Default.argTypes = argTypes;
+export const Default: StoryObj = {
+    render: (args) => ({
+        props: {
+            story: DefaultGizmoHelperStory,
+            inputs: args,
+            options: makeCanvasOptions({ controls: false, camera: { position: [0, 0, 10] } }),
+        },
+        template: `
+    <storybook-setup [story]="story" [inputs]="inputs" [options]="options" />
+        `,
+    }),
+    args,
+    argTypes,
+};

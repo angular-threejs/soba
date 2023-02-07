@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
-import { Meta, moduleMetadata, Story } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { extend } from 'angular-three';
 import { NgtsText3D } from 'angular-three-soba/abstractions';
 import { NgtsCenter, NgtsFloat } from 'angular-three-soba/staging';
@@ -36,13 +36,16 @@ export default {
     decorators: [moduleMetadata({ imports: [StorybookSetup] })],
 } as Meta;
 
-export const Default: Story = (args) => ({
-    props: { options: makeCanvasOptions({ camera: { position: [0, 0, 5] } }), story: DefaultText3DStory, inputs: args },
-    template: `
-<storybook-setup [options]="options" [story]="story" [inputs]="inputs" />
-    `,
-});
-
-Default.args = {
-    text: 'Angular Three',
+export const Default: StoryObj = {
+    render: (args) => ({
+        props: {
+            options: makeCanvasOptions({ camera: { position: [0, 0, 5] } }),
+            story: DefaultText3DStory,
+            inputs: args,
+        },
+        template: `
+    <storybook-setup [options]="options" [story]="story" [inputs]="inputs" />
+        `,
+    }),
+    args: { text: 'Angular Three' },
 };

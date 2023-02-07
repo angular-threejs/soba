@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
-import { Meta, moduleMetadata, Story } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { extend, NgtArgs } from 'angular-three';
 import { NgtsPerspectiveCamera } from 'angular-three-soba/cameras';
 import { NgtsOrbitControls } from 'angular-three-soba/controls';
@@ -84,61 +84,62 @@ export default {
     decorators: [moduleMetadata({ imports: [StorybookSetup] })],
 } as Meta;
 
-export const Default: Story = (args) => ({
-    props: {
-        story: DefaultEnvironmentStory,
-        options: makeCanvasOptions({ controls: false, camera: { position: [0, 0, 10] } }),
-        inputs: args,
+export const Default: StoryObj = {
+    render: (args) => ({
+        props: {
+            story: DefaultEnvironmentStory,
+            options: makeCanvasOptions({ controls: false, camera: { position: [0, 0, 10] } }),
+            inputs: args,
+        },
+        template: `
+    <storybook-setup [options]="options" [story]="story" [inputs]="inputs" />
+        `,
+    }),
+
+    args: {
+        background: true,
+        blur: 0,
+        preset: presets[0],
     },
-    template: `
-<storybook-setup [options]="options" [story]="story" [inputs]="inputs" />
+
+    argTypes: {
+        preset: { options: presets, control: { type: 'select' } },
+        blur: { control: { type: 'range', min: 0, max: 1, step: 0.01 } },
+    },
+};
+
+export const Files: StoryObj = {
+    render: (args) => ({
+        props: {
+            story: FilesEnvironmentStory,
+            options: makeCanvasOptions({ controls: false, camera: { position: [0, 0, 10] } }),
+            inputs: args,
+        },
+        template: `
+    <storybook-setup [options]="options" [story]="story" [inputs]="inputs" />
+        `,
+    }),
+
+    args: {
+        background: true,
+    },
+};
+
+export const Ground: StoryObj = {
+    render: (args) => ({
+        props: {
+            story: GroundEnvironmentStory,
+            options: makeCanvasOptions({ controls: false, camera: { position: [0, 0, 10] } }),
+            inputs: args,
+        },
+        template: `
+    <storybook-setup [options]="options" [story]="story" [inputs]="inputs" />
     `,
-});
-
-Default.args = {
-    background: true,
-    blur: 0,
-    preset: presets[0],
-};
-
-Default.argTypes = {
-    preset: { options: presets, control: { type: 'select' } },
-    blur: { control: { type: 'range', min: 0, max: 1, step: 0.01 } },
-};
-
-export const Files: Story = (args) => ({
-    props: {
-        story: FilesEnvironmentStory,
-        options: makeCanvasOptions({ controls: false, camera: { position: [0, 0, 10] } }),
-        inputs: args,
+    }),
+    args: { height: 15, radius: 60, preset: 'park' },
+    argTypes: {
+        preset: { options: presets, control: { type: 'select' } },
+        height: { control: { type: 'range', min: 0, max: 50, step: 0.1 } },
+        radius: { control: { type: 'range', min: 0, max: 200, step: 1 } },
     },
-    template: `
-<storybook-setup [options]="options" [story]="story" [inputs]="inputs" />
-    `,
-});
-
-Files.args = {
-    background: true,
-};
-
-export const Ground: Story = (args) => ({
-    props: {
-        story: GroundEnvironmentStory,
-        options: makeCanvasOptions({ controls: false, camera: { position: [0, 0, 10] } }),
-        inputs: args,
-    },
-    template: `
-<storybook-setup [options]="options" [story]="story" [inputs]="inputs" />
-`,
-});
-Ground.args = {
-    height: 15,
-    radius: 60,
-    preset: 'park',
-};
-
-Ground.argTypes = {
-    preset: { options: presets, control: { type: 'select' } },
-    height: { control: { type: 'range', min: 0, max: 50, step: 0.1 } },
-    radius: { control: { type: 'range', min: 0, max: 200, step: 1 } },
 };

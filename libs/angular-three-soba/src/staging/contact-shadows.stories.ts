@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
-import { Meta, moduleMetadata, Story } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryFn, StoryObj } from '@storybook/angular';
 import { extend, NgtArgs, NgtBeforeRenderEvent } from 'angular-three';
 import { NgtsContactShadows } from 'angular-three-soba/staging';
 import { Mesh, MeshToonMaterial, PlaneGeometry, SphereGeometry } from 'three';
@@ -44,20 +44,19 @@ export default {
     decorators: [moduleMetadata({ imports: [StorybookSetup] })],
 } as Meta;
 
-export const Default: Story = () => ({
+export const Default: StoryFn = () => ({
     props: { story: DefaultContactShadowsStory },
     template: `
 <storybook-setup [story]="story" />
   `,
 });
 
-export const Colorized: Story = (args) => ({
-    props: { story: DefaultContactShadowsStory, inputs: args },
-    template: `
-<storybook-setup [story]="story" [inputs]="inputs" />
-  `,
-});
-
-Colorized.args = {
-    colorized: true,
+export const Colorized: StoryObj = {
+    render: (args) => ({
+        props: { story: DefaultContactShadowsStory, inputs: args },
+        template: `
+    <storybook-setup [story]="story" [inputs]="inputs" />
+      `,
+    }),
+    args: { colorized: true },
 };

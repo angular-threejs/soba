@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
-import { Meta, moduleMetadata, Story } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { extend, NgtArgs, NgtBeforeRenderEvent } from 'angular-three';
 import { NgtsOrbitControls } from 'angular-three-soba/controls';
 import { NgtsCameraShake } from 'angular-three-soba/staging';
@@ -90,42 +90,30 @@ export default {
     decorators: [moduleMetadata({ imports: [StorybookSetup] })],
 } as Meta;
 
-export const Default: Story = (args) => ({
-    props: {
-        inputs: args,
-        story: DefaultCameraShakeStory,
-        options: makeCanvasOptions({ camera: { position: [0, 0, 10] }, controls: false }),
-    },
-    template: `
-<storybook-setup [options]="options" [story]="story" [inputs]="inputs">
-  `,
-});
-
-Default.args = {
-    maxPitch: 0.05,
-    maxRoll: 0.05,
-    maxYaw: 0.05,
-    pitchFrequency: 0.8,
-    rollFrequency: 0.8,
-    yawFrequency: 0.8,
+export const Default: StoryObj = {
+    render: (args) => ({
+        props: {
+            inputs: args,
+            story: DefaultCameraShakeStory,
+            options: makeCanvasOptions({ camera: { position: [0, 0, 10] }, controls: false }),
+        },
+        template: `
+    <storybook-setup [options]="options" [story]="story" [inputs]="inputs">
+      `,
+    }),
+    args: { maxPitch: 0.05, maxRoll: 0.05, maxYaw: 0.05, pitchFrequency: 0.8, rollFrequency: 0.8, yawFrequency: 0.8 },
 };
 
-export const WithOrbitControls: Story = (args) => ({
-    props: {
-        inputs: args,
-        story: WithOrbitControlsStory,
-        options: makeCanvasOptions({ camera: { position: [0, 0, 10] }, controls: false }),
-    },
-    template: `
-<storybook-setup [options]="options" [story]="story" [inputs]="inputs">
-  `,
-});
-
-WithOrbitControls.args = {
-    maxPitch: 0.05,
-    maxRoll: 0.05,
-    maxYaw: 0.05,
-    pitchFrequency: 0.8,
-    rollFrequency: 0.8,
-    yawFrequency: 0.8,
+export const WithOrbitControls: StoryObj = {
+    render: (args) => ({
+        props: {
+            inputs: args,
+            story: WithOrbitControlsStory,
+            options: makeCanvasOptions({ camera: { position: [0, 0, 10] }, controls: false }),
+        },
+        template: `
+    <storybook-setup [options]="options" [story]="story" [inputs]="inputs">
+      `,
+    }),
+    args: { maxPitch: 0.05, maxRoll: 0.05, maxYaw: 0.05, pitchFrequency: 0.8, rollFrequency: 0.8, yawFrequency: 0.8 },
 };

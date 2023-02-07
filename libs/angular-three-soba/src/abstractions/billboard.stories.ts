@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
-import { Meta, moduleMetadata, Story } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { extend, NgtArgs } from 'angular-three';
 import { NgtsBillboard, NgtsText } from 'angular-three-soba/abstractions';
 import { NgtsOrbitControls } from 'angular-three-soba/controls';
@@ -141,46 +141,30 @@ export default {
 
 const compoundPrefixes = ['BillboardBox'];
 
-export const Default: Story = (args) => ({
-    props: {
-        options: makeCanvasOptions({
-            camera: { position: [0, 0, 10] },
-            controls: false,
-            compoundPrefixes,
-        }),
-        story: DefaultBillboardStory,
-        inputs: args,
-    },
-    template: `
-<storybook-setup  [story]="story" [inputs]="inputs" [options]="options" />
-    `,
-});
-
-Default.args = {
-    follow: true,
-    lockX: false,
-    lockY: false,
-    lockZ: false,
+export const Default: StoryObj = {
+    render: (args) => ({
+        props: {
+            options: makeCanvasOptions({ camera: { position: [0, 0, 10] }, controls: false, compoundPrefixes }),
+            story: DefaultBillboardStory,
+            inputs: args,
+        },
+        template: `
+    <storybook-setup  [story]="story" [inputs]="inputs" [options]="options" />
+        `,
+    }),
+    args: { follow: true, lockX: false, lockY: false, lockZ: false },
 };
 
-export const Text: Story = (args) => ({
-    props: {
-        options: makeCanvasOptions({
-            camera: { position: [0, 0, 10] },
-            controls: false,
-            compoundPrefixes,
-        }),
-        story: TextBillboardStory,
-        inputs: args,
-    },
-    template: `
-<storybook-setup  [story]="story" [inputs]="inputs" [options]="options" />
-    `,
-});
-
-Text.args = {
-    follow: true,
-    lockX: false,
-    lockY: false,
-    lockZ: false,
+export const Text: StoryObj = {
+    render: (args) => ({
+        props: {
+            options: makeCanvasOptions({ camera: { position: [0, 0, 10] }, controls: false, compoundPrefixes }),
+            story: TextBillboardStory,
+            inputs: args,
+        },
+        template: `
+    <storybook-setup  [story]="story" [inputs]="inputs" [options]="options" />
+        `,
+    }),
+    args: { follow: true, lockX: false, lockY: false, lockZ: false },
 };

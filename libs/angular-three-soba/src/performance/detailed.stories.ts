@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { Meta, moduleMetadata, Story } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
 import { extend, NgtArgs } from 'angular-three';
 import { NgtsOrbitControls } from 'angular-three-soba/controls';
 import { NgtsDetailed } from 'angular-three-soba/performance';
@@ -39,7 +39,7 @@ export default {
     decorators: [moduleMetadata({ imports: [StorybookSetup] })],
 } as Meta;
 
-export const Default: Story = () => ({
+export const Default: StoryFn = () => ({
     props: {
         story: DefaultDetailedStory,
         options: makeCanvasOptions({ controls: false, camera: { position: [0, 0, 100] } }),
