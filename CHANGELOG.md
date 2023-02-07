@@ -1,5 +1,17 @@
 
 
+## [1.5.0](https://github.com/angular-threejs/soba/compare/1.4.0...1.5.0) (2023-02-07)
+
+
+### Features
+
+* add line ([9b1e0b9](https://github.com/angular-threejs/soba/commit/9b1e0b9e952a46c4544bfd0f9e59cdf055580589))
+
+
+### Documentations
+
+* migrate to csf3 ([7c44d80](https://github.com/angular-threejs/soba/commit/7c44d80308c53d75e5c784d471df6b87ac34b921))
+
 ## [1.4.0](https://github.com/angular-threejs/soba/compare/1.3.2...1.4.0) (2023-02-06)
 
 
