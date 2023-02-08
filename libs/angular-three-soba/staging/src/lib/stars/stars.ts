@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
-import { extend, injectBeforeRender, injectNgtRef, NgtArgs, NgtRenderState, NgtRxStore } from 'angular-three';
+import { extend, injectBeforeRender, injectNgtRef, NgtArgs, NgtRef, NgtRenderState, NgtRxStore } from 'angular-three';
 import { shaderMaterial } from 'angular-three-soba/shaders';
 import { AdditiveBlending, BufferAttribute, BufferGeometry, Color, Points, Spherical, Vector3 } from 'three';
 
@@ -51,7 +51,7 @@ const genStar = (r: number) => {
     selector: 'ngts-stars',
     standalone: true,
     template: `
-        <ngt-points [ref]="starsRef">
+        <ngt-points *ref="starsRef">
             <ngt-buffer-geometry>
                 <ngt-buffer-attribute attach="attributes.position" *args="[get('bufferAttributes').positions, 3]" />
                 <ngt-buffer-attribute attach="attributes.color" *args="[get('bufferAttributes').colors, 3]" />
@@ -69,7 +69,7 @@ const genStar = (r: number) => {
             </ngt-primitive>
         </ngt-points>
     `,
-    imports: [NgtArgs],
+    imports: [NgtArgs, NgtRef],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class NgtsStars extends NgtRxStore {

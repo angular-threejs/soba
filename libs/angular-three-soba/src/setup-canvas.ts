@@ -10,6 +10,7 @@ import {
     Input,
     OnDestroy,
     OnInit,
+    reflectComponentType,
     Type,
     ViewChild,
     ViewContainerRef,
@@ -89,9 +90,10 @@ class StorybookScene extends NgtRxStore implements OnInit, OnDestroy {
 
     ngOnInit() {
         const ref = (this.ref = this.anchor.createComponent(this.story));
+        const componentInputs = (reflectComponentType(ref.componentType)?.inputs || []).map((input) => input.propName);
 
         this.hold(this.inputs$, (inputs) => {
-            for (const key of Object.keys(inputs)) {
+            for (const key of componentInputs) {
                 ref.setInput(key, inputs[key]);
             }
             ref.changeDetectorRef.detectChanges();

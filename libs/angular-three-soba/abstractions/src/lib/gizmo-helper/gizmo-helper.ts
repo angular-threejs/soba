@@ -13,7 +13,7 @@ import {
     TemplateRef,
 } from '@angular/core';
 import { selectSlice } from '@rx-angular/state';
-import { extend, injectNgtRef, NgtPortal, NgtPortalContent, NgtRxStore, NgtStore } from 'angular-three';
+import { extend, injectNgtRef, NgtPortal, NgtPortalContent, NgtRef, NgtRxStore, NgtStore } from 'angular-three';
 import { NgtsOrthographicCamera } from 'angular-three-soba/cameras';
 import { combineLatest, map } from 'rxjs';
 import { Group, Matrix4, Object3D, OrthographicCamera, Quaternion, Vector3 } from 'three';
@@ -73,7 +73,7 @@ export class NgtsGizmoHelperContent {}
                     [position]="[0, 0, 200]"
                 />
                 <ngt-group
-                    [ref]="gizmoRef"
+                    *ref="gizmoRef"
                     [position]="get('gizmoPosition')"
                     (beforeRender)="onBeforeRender($any($event).state.delta)"
                 >
@@ -82,7 +82,7 @@ export class NgtsGizmoHelperContent {}
             </ng-template>
         </ngt-portal>
     `,
-    imports: [NgtPortal, NgtPortalContent, NgtsOrthographicCamera, NgTemplateOutlet],
+    imports: [NgtPortal, NgtPortalContent, NgtRef, NgtsOrthographicCamera, NgTemplateOutlet],
     providers: [{ provide: NGTS_GIZMO_HELPER_API, useFactory: gizmoHelperApiFactory, deps: [NgtsGizmoHelper] }],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

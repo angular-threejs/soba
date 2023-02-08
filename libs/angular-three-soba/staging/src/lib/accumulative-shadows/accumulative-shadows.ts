@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Directive, inject, InjectionToken, Input } from '@angular/core';
-import { extend, getLocalState, injectNgtRef, NgtRxStore, NgtStore } from 'angular-three';
+import { extend, getLocalState, injectNgtRef, NgtRef, NgtRxStore, NgtStore } from 'angular-three';
 import { shaderMaterial } from 'angular-three-soba/shaders';
 import { combineLatest, Subject } from 'rxjs';
 import * as THREE from 'three';
@@ -178,11 +178,11 @@ export class AccumulativeShadowsConsumer {
     standalone: true,
     template: `
         <ngt-group ngtCompound>
-            <ngt-group [ref]="accumulativeShadowsRef" [traverse]="nullTraverse">
+            <ngt-group *ref="accumulativeShadowsRef" [traverse]="nullTraverse">
                 <ng-content />
                 <ngts-accumulative-shadows-consumer />
             </ngt-group>
-            <ngt-mesh [receiveShadow]="true" [ref]="meshRef" [scale]="get('scale')" [rotation]="[-Math.PI / 2, 0, 0]">
+            <ngt-mesh *ref="meshRef" [receiveShadow]="true" [scale]="get('scale')" [rotation]="[-Math.PI / 2, 0, 0]">
                 <ngt-plane-geometry />
                 <ngt-soft-shadow-material
                     [transparent]="true"
@@ -195,7 +195,7 @@ export class AccumulativeShadowsConsumer {
             </ngt-mesh>
         </ngt-group>
     `,
-    imports: [AccumulativeShadowsConsumer],
+    imports: [AccumulativeShadowsConsumer, NgtRef],
     providers: [
         {
             provide: NGTS_ACCUMULATIVE_SHADOWS_API,

@@ -1,6 +1,6 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input } from '@angular/core';
-import { extend, injectNgtRef, NgtBeforeRenderEvent, NgtPush, NgtRxStore, NgtStore } from 'angular-three';
+import { extend, injectNgtRef, NgtBeforeRenderEvent, NgtPush, NgtRef, NgtRxStore, NgtStore } from 'angular-three';
 import { NgtsBillboard } from 'angular-three-soba/abstractions';
 import { injectNgtsTextureLoader } from 'angular-three-soba/loaders';
 import { Observable } from 'rxjs';
@@ -14,7 +14,7 @@ extend({ Group, Mesh, PlaneGeometry, MeshStandardMaterial });
     selector: 'ngts-cloud',
     standalone: true,
     template: `
-        <ngt-group ngtCompound [ref]="groupRef">
+        <ngt-group ngtCompound *ref="groupRef">
             <ngt-group
                 [position]="[0, 0, (get('segments') / 2) * get('depth')]"
                 (beforeRender)="onBeforeRender($any($event))"
@@ -42,7 +42,7 @@ extend({ Group, Mesh, PlaneGeometry, MeshStandardMaterial });
             </ngt-group>
         </ngt-group>
     `,
-    imports: [NgFor, NgtPush, NgtsBillboard, NgIf],
+    imports: [NgFor, NgtPush, NgtsBillboard, NgIf, NgtRef],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class NgtsCloud extends NgtRxStore {

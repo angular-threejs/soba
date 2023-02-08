@@ -8,7 +8,7 @@ import {
     OnInit,
     Output,
 } from '@angular/core';
-import { extend, injectBeforeRender, injectNgtRef, is, NgtRxStore, NgtStore } from 'angular-three';
+import { extend, injectBeforeRender, injectNgtRef, is, NgtRef, NgtRxStore, NgtStore } from 'angular-three';
 import { combineLatest, switchMap } from 'rxjs';
 import * as THREE from 'three';
 import { Group } from 'three';
@@ -265,10 +265,11 @@ extend({ Group });
     selector: 'ngts-bounds',
     standalone: true,
     template: `
-        <ngt-group ngtCompound [ref]="boundsRef">
+        <ngt-group ngtCompound *ref="boundsRef">
             <ng-content />
         </ngt-group>
     `,
+    imports: [NgtRef],
     providers: [{ provide: NGTS_BOUNDS_API, useFactory: boundsApiFactory, deps: [NgtsBounds] }],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

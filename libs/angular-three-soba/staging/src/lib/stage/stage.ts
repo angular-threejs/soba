@@ -75,10 +75,7 @@ type NgtsStageProps = {
     center?: Partial<NgtsCenter>;
 };
 
-@Directive({
-    selector: 'ngts-stage-refit',
-    standalone: true,
-})
+@Directive({ selector: 'ngts-stage-refit', standalone: true })
 export class NgtsStageRefit implements OnChanges {
     private readonly boundsApi = inject(NGTS_BOUNDS_API);
 

@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input, OnInit } from '@angular/core';
-import { injectNgtRef, NgtAfterAttach, NgtArgs, NgtStore, startWithUndefined } from 'angular-three';
+import { injectNgtRef, NgtAfterAttach, NgtArgs, NgtRef, NgtStore, startWithUndefined } from 'angular-three';
 import { combineLatest, map } from 'rxjs';
 import * as THREE from 'three';
 import { Line2, LineGeometry, LineMaterial, LineSegments2, LineSegmentsGeometry } from 'three-stdlib';
@@ -9,31 +9,33 @@ import { NgtsLineInput } from './line-input';
     selector: 'ngts-line[points]',
     standalone: true,
     template: `
-        <ngt-primitive *args="[lineRef.nativeElement]" [ref]="lineRef" ngtCompound>
-            <ngt-primitive
-                *args="[get('lineGeometry')]"
-                attach="geometry"
-                (afterAttach)="onAfterGeometryAttached($any($event))"
-            />
-            <ngt-primitive
-                *args="[lineMaterial]"
-                attach="material"
-                [color]="get('color')"
-                [vertexColors]="Boolean(get('vertexColors'))"
-                [resolution]="get('materialResolution')"
-                [linewidth]="get('lineWidth')"
-                [alphaToCoverage]="get('alphaToCoverage')"
-                [dashed]="get('dashed')"
-                [dashScale]="get('dashScale') ?? lineMaterial.dashScale"
-                [dashSize]="get('dashSize') ?? lineMaterial.dashSize"
-                [dashOffset]="get('dashOffset') ?? lineMaterial.dashOffset"
-                [gapSize]="get('gapSize') ?? lineMaterial.gapSize"
-                [wireframe]="get('wireframe') ?? lineMaterial.wireframe"
-                [worldUnits]="get('worldUnits')"
-            />
-        </ngt-primitive>
+        <ng-container *args="[line]">
+            <ngt-primitive *ref="lineRef" ngtCompound>
+                <ngt-primitive
+                    *args="[get('lineGeometry')]"
+                    attach="geometry"
+                    (afterAttach)="onAfterAttach($any($event))"
+                />
+                <ngt-primitive
+                    *args="[lineMaterial]"
+                    attach="material"
+                    [color]="get('color')"
+                    [vertexColors]="Boolean(get('vertexColors'))"
+                    [resolution]="get('materialResolution')"
+                    [linewidth]="get('lineWidth')"
+                    [alphaToCoverage]="get('alphaToCoverage')"
+                    [dashed]="get('dashed')"
+                    [dashScale]="get('dashScale') ?? lineMaterial.dashScale"
+                    [dashSize]="get('dashSize') ?? lineMaterial.dashSize"
+                    [dashOffset]="get('dashOffset') ?? lineMaterial.dashOffset"
+                    [gapSize]="get('gapSize') ?? lineMaterial.gapSize"
+                    [wireframe]="get('wireframe') ?? lineMaterial.wireframe"
+                    [worldUnits]="get('worldUnits')"
+                />
+            </ngt-primitive>
+        </ng-container>
     `,
-    imports: [NgtArgs],
+    imports: [NgtArgs, NgtRef],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class NgtsLine extends NgtsLineInput implements OnInit {
@@ -41,6 +43,8 @@ export class NgtsLine extends NgtsLineInput implements OnInit {
     readonly lineMaterial = new LineMaterial();
 
     private readonly store = inject(NgtStore);
+
+    line: Line2 | LineSegments2 | null = null;
 
     @Input() lineRef = injectNgtRef<LineSegments2 | Line2>();
 
@@ -54,16 +58,8 @@ export class NgtsLine extends NgtsLineInput implements OnInit {
         this.set({ segments });
     }
 
-    // TODO: Figure out if this is the case for everything else.
-    // We'd want to run computeLineDistances on the Line2 on "points" changed
-    // Consequently,when "points" changes, LineGeometry also changes and that causes
-    // the Renderer to replace the LineGeometry on the Line2, which is what's happening.
-    // But the effect that runs line.computeLineDistances() runs a little BEFORE the new lineGeometry
-    // has been attached. So it doesn't work with the props changed from the Material
-    //
-    // Alternatively, we can also run the effect on line#children changes.
-    onAfterGeometryAttached({ parent }: NgtAfterAttach<Line2 | LineSegments2, LineGeometry>) {
-        // parent.computeLineDistances();
+    onAfterAttach({ parent }: NgtAfterAttach<Line2 | LineSegments2>) {
+        parent.computeLineDistances();
     }
 
     override initialize(): void {
@@ -114,21 +110,9 @@ export class NgtsLine extends NgtsLineInput implements OnInit {
             )
         );
 
-        if (!this.lineRef.nativeElement) {
-            this.lineRef.nativeElement = this.get('segments') ? new LineSegments2() : new Line2();
-        }
+        this.line = this.get('segments') ? new LineSegments2() : new Line2();
 
-        this.computeLineDistances();
         this.disposeGeometry();
-    }
-
-    private computeLineDistances() {
-        this.hold(
-            combineLatest([this.lineRef.$, this.lineRef.children$('nonObjects'), this.select('points')]),
-            ([line]) => {
-                line.computeLineDistances();
-            }
-        );
     }
 
     private disposeGeometry() {

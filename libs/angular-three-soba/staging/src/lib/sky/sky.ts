@@ -1,5 +1,5 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnInit } from '@angular/core';
-import { injectNgtRef, NgtArgs, NgtRxStore } from 'angular-three';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
+import { injectNgtRef, NgtArgs, NgtRef, NgtRxStore } from 'angular-three';
 import { Vector3 } from 'three';
 import { Sky } from 'three-stdlib';
 
@@ -18,18 +18,20 @@ export function calcPosFromAngles(inclination: number, azimuth: number, vector: 
     selector: 'ngts-sky',
     standalone: true,
     template: `
-        <ngt-primitive *args="[skyRef.nativeElement]" ngtCompound [ref]="skyRef" [scale]="get('scale')">
-            <ngt-value [rawValue]="get('mieCoefficient')" attach="material.uniforms.mieCoefficient.value" />
-            <ngt-value [rawValue]="get('mieDirectionalG')" attach="material.uniforms.mieDirectionalG.value" />
-            <ngt-value [rawValue]="get('rayleigh')" attach="material.uniforms.rayleigh.value" />
-            <ngt-value [rawValue]="get('sunPosition')" attach="material.uniforms.sunPosition.value" />
-            <ngt-value [rawValue]="get('turbidity')" attach="material.uniforms.turbidity.value" />
-        </ngt-primitive>
+        <ng-container *args="[sky]">
+            <ngt-primitive ngtCompound *ref="skyRef" [scale]="get('scale')">
+                <ngt-value [rawValue]="get('mieCoefficient')" attach="material.uniforms.mieCoefficient.value" />
+                <ngt-value [rawValue]="get('mieDirectionalG')" attach="material.uniforms.mieDirectionalG.value" />
+                <ngt-value [rawValue]="get('rayleigh')" attach="material.uniforms.rayleigh.value" />
+                <ngt-value [rawValue]="get('sunPosition')" attach="material.uniforms.sunPosition.value" />
+                <ngt-value [rawValue]="get('turbidity')" attach="material.uniforms.turbidity.value" />
+            </ngt-primitive>
+        </ng-container>
     `,
-    imports: [NgtArgs],
+    imports: [NgtArgs, NgtRef],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class NgtsSky extends NgtRxStore implements OnInit {
+export class NgtsSky extends NgtRxStore {
     @Input() skyRef = injectNgtRef<Sky>();
 
     @Input() set distance(distance: number) {
@@ -64,6 +66,8 @@ export class NgtsSky extends NgtRxStore implements OnInit {
         this.set({ turbidity });
     }
 
+    readonly sky = new Sky();
+
     override initialize(): void {
         super.initialize();
         const inclination = 0.6;
@@ -88,9 +92,5 @@ export class NgtsSky extends NgtRxStore implements OnInit {
             'scale',
             this.select(['distance'], ({ distance }) => new Vector3().setScalar(distance))
         );
-    }
-
-    ngOnInit() {
-        if (!this.skyRef.nativeElement) this.skyRef.nativeElement = new Sky();
     }
 }

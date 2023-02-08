@@ -9,7 +9,7 @@ import {
     Output,
 } from '@angular/core';
 import { RxActionFactory } from '@rx-angular/state/actions';
-import { injectNgtRef, NgtArgs, NgtRxStore, NgtStore } from 'angular-three';
+import { injectNgtRef, NgtArgs, NgtRef, NgtRxStore, NgtStore } from 'angular-three';
 // @ts-ignore
 import { preloadFont, Text } from 'troika-three-text';
 
@@ -17,18 +17,20 @@ import { preloadFont, Text } from 'troika-three-text';
     selector: 'ngts-text[text]',
     standalone: true,
     template: `
-        <ngt-primitive
-            ngtCompound
-            *args="[textRef.nativeElement]"
-            [text]="get('text')"
-            [anchorX]="get('anchorX')"
-            [anchorY]="get('anchorY')"
-            [font]="get('font')"
-        >
-            <ng-content />
-        </ngt-primitive>
+        <ng-container *args="[troikaText]">
+            <ngt-primitive
+                ngtCompound
+                *ref="textRef"
+                [text]="get('text')"
+                [anchorX]="get('anchorX')"
+                [anchorY]="get('anchorY')"
+                [font]="get('font')"
+            >
+                <ng-content />
+            </ngt-primitive>
+        </ng-container>
     `,
-    imports: [NgtArgs],
+    imports: [NgtArgs, NgtRef],
     providers: [RxActionFactory],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
@@ -63,10 +65,9 @@ export class NgtsText extends NgtRxStore implements OnInit, OnDestroy {
     }
 
     private readonly store = inject(NgtStore);
-    private readonly troikaText = new Text();
+    readonly troikaText = new Text();
 
     ngOnInit(): void {
-        if (!this.textRef.nativeElement) this.textRef.nativeElement = this.troikaText;
         this.preloadFont();
         this.syncText();
     }
