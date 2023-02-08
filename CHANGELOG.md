@@ -1,5 +1,12 @@
 
 
+## [1.6.0-beta.0](https://github.com/angular-threejs/soba/compare/1.5.0...1.6.0-beta.0) (2023-02-08)
+
+
+### Features
+
+* use *ref ([c5233de](https://github.com/angular-threejs/soba/commit/c5233de0817bc5a57e2990d41e450cb3d7f00854))
+
 ## [1.5.0](https://github.com/angular-threejs/soba/compare/1.4.0...1.5.0) (2023-02-07)
 
 
