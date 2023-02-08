@@ -1,14 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input } from '@angular/core';
-import {
-    extend,
-    injectBeforeRender,
-    injectNgtRef,
-    NgtArgs,
-    NgtRef,
-    NgtRenderState,
-    NgtRxStore,
-    NgtStore,
-} from 'angular-three';
+import { extend, injectBeforeRender, injectNgtRef, NgtArgs, NgtRenderState, NgtRxStore, NgtStore } from 'angular-three';
 import { shaderMaterial } from 'angular-three-soba/shaders';
 import { map, Observable, startWith, withLatestFrom } from 'rxjs';
 import { BufferAttribute, BufferGeometry, Color, MathUtils, Points, Vector2, Vector3, Vector4 } from 'three';
@@ -97,7 +88,7 @@ function usePropAsIsOrAsAttribute<T = any>(count: number, prop?: T | Float32Arra
     selector: 'ngts-sparkles',
     standalone: true,
     template: `
-        <ngt-points ngtCompount *ref="pointsRef">
+        <ngt-points ngtCompount [ref]="pointsRef">
             <ngt-buffer-geometry>
                 <ngt-buffer-attribute *args="[get('positions'), 3]" attach="attributes.position" />
                 <ngt-buffer-attribute *args="[get('sizes'), 1]" attach="attributes.size" />
@@ -106,10 +97,10 @@ function usePropAsIsOrAsAttribute<T = any>(count: number, prop?: T | Float32Arra
                 <ngt-buffer-attribute *args="[get('colors'), 3]" attach="attributes.color" />
                 <ngt-buffer-attribute *args="[get('noises'), 3]" attach="attributes.noise" />
             </ngt-buffer-geometry>
-            <ngt-sparkles-material *ref="materialRef" [transparent]="true" [depthWrite]="false" [pixelRatio]="dpr" />
+            <ngt-sparkles-material [ref]="materialRef" [transparent]="true" [depthWrite]="false" [pixelRatio]="dpr" />
         </ngt-points>
     `,
-    imports: [NgtArgs, NgtRef],
+    imports: [NgtArgs],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class NgtsSparkles extends NgtRxStore {

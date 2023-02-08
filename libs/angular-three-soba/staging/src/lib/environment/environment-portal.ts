@@ -7,7 +7,6 @@ import {
     NgtArgs,
     NgtPortal,
     NgtPortalContent,
-    NgtRef,
     NgtRenderState,
     prepare,
 } from 'angular-three';
@@ -28,9 +27,7 @@ extend({ CubeCamera });
         <ngt-portal [container]="virtualSceneRef">
             <ng-template ngtPortalContent>
                 <ng-content />
-                <ng-container *args="get('cameraArgs')">
-                    <ngt-cube-camera *ref="cubeCameraRef" />
-                </ng-container>
+                <ngt-cube-camera *args="get('cameraArgs')" [ref]="cubeCameraRef" />
                 <ng-container *ngIf="get('files') || get('preset'); else environmentMap">
                     <ngts-environment-cube
                         [background]="true"
@@ -46,7 +43,7 @@ extend({ CubeCamera });
             </ng-template>
         </ngt-portal>
     `,
-    imports: [NgtPortal, NgtPortalContent, NgtsEnvironmentMap, NgtsEnvironmentCube, NgIf, NgtArgs, NgtRef],
+    imports: [NgtPortal, NgtPortalContent, NgtsEnvironmentMap, NgtsEnvironmentCube, NgIf, NgtArgs],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class NgtsEnvironmentPortal extends NgtsEnvironmentInputs implements OnInit {

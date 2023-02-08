@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Directive, inject, InjectionToken, Input } from '@angular/core';
-import { extend, injectNgtRef, NgtArgs, NgtRef, NgtRepeat, NgtRxStore } from 'angular-three';
+import { extend, injectNgtRef, NgtArgs, NgtRepeat, NgtRxStore } from 'angular-three';
 import { combineLatest } from 'rxjs';
 import * as THREE from 'three';
 import { DirectionalLight, Group, OrthographicCamera, Vector2 } from 'three';
@@ -71,7 +71,7 @@ export class RandomizedLightsConsumer {
     selector: 'ngts-randomized-lights',
     standalone: true,
     template: `
-        <ngt-group ngtCompound *ref="lightsRef">
+        <ngt-group ngtCompound [ref]="lightsRef">
             <ngt-directional-light
                 *ngFor="let i; repeat: get('amount')"
                 [castShadow]="get('castShadow')"
@@ -84,7 +84,7 @@ export class RandomizedLightsConsumer {
             <ngts-randomized-lights-consumer />
         </ngt-group>
     `,
-    imports: [RandomizedLightsConsumer, NgtArgs, NgtRepeat, NgtRef],
+    imports: [RandomizedLightsConsumer, NgtArgs, NgtRepeat],
     providers: [
         { provide: NGTS_RANDOMIZED_LIGHTS_API, useFactory: randomizedLightsApiFactory, deps: [NgtsRandomizedLights] },
     ],

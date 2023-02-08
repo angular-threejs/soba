@@ -9,7 +9,7 @@ import {
     Output,
 } from '@angular/core';
 import { RxActionFactory } from '@rx-angular/state/actions';
-import { injectNgtRef, NgtArgs, NgtRef, NgtRxStore, NgtStore } from 'angular-three';
+import { injectNgtRef, NgtArgs, NgtRxStore, NgtStore } from 'angular-three';
 // @ts-ignore
 import { preloadFont, Text } from 'troika-three-text';
 
@@ -17,10 +17,11 @@ import { preloadFont, Text } from 'troika-three-text';
     selector: 'ngts-text[text]',
     standalone: true,
     template: `
-        <ng-container *args="[troikaText]">
+        <ng-container>
             <ngt-primitive
                 ngtCompound
-                *ref="textRef"
+                *args="[troikaText]"
+                [ref]="textRef"
                 [text]="get('text')"
                 [anchorX]="get('anchorX')"
                 [anchorY]="get('anchorY')"
@@ -30,7 +31,7 @@ import { preloadFont, Text } from 'troika-three-text';
             </ngt-primitive>
         </ng-container>
     `,
-    imports: [NgtArgs, NgtRef],
+    imports: [NgtArgs],
     providers: [RxActionFactory],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

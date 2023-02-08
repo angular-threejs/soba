@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { extend, injectNgtRef, NgtRef, NgtRxStore } from 'angular-three';
+import { extend, injectNgtRef, NgtRxStore } from 'angular-three';
 import { combineLatest } from 'rxjs';
 import { Box3, Group, Sphere, Vector3 } from 'three';
 
@@ -9,15 +9,14 @@ extend({ Group });
     selector: 'ngts-center',
     standalone: true,
     template: `
-        <ngt-group ngtCompound *ref="centerRef">
-            <ngt-group *ref="outerRef">
-                <ngt-group *ref="innerRef">
+        <ngt-group ngtCompound [ref]="centerRef">
+            <ngt-group [ref]="outerRef">
+                <ngt-group [ref]="innerRef">
                     <ng-content />
                 </ngt-group>
             </ngt-group>
         </ngt-group>
     `,
-    imports: [NgtRef],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class NgtsCenter extends NgtRxStore implements OnInit {

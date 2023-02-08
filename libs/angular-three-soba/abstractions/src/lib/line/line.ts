@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input, OnInit } from '@angular/core';
-import { injectNgtRef, NgtAfterAttach, NgtArgs, NgtRef, NgtStore, startWithUndefined } from 'angular-three';
+import { injectNgtRef, NgtAfterAttach, NgtArgs, NgtStore, startWithUndefined } from 'angular-three';
 import { combineLatest, map } from 'rxjs';
 import * as THREE from 'three';
 import { Line2, LineGeometry, LineMaterial, LineSegments2, LineSegmentsGeometry } from 'three-stdlib';
@@ -9,33 +9,31 @@ import { NgtsLineInput } from './line-input';
     selector: 'ngts-line[points]',
     standalone: true,
     template: `
-        <ng-container *args="[line]">
-            <ngt-primitive *ref="lineRef" ngtCompound>
-                <ngt-primitive
-                    *args="[get('lineGeometry')]"
-                    attach="geometry"
-                    (afterAttach)="onAfterAttach($any($event))"
-                />
-                <ngt-primitive
-                    *args="[lineMaterial]"
-                    attach="material"
-                    [color]="get('color')"
-                    [vertexColors]="Boolean(get('vertexColors'))"
-                    [resolution]="get('materialResolution')"
-                    [linewidth]="get('lineWidth')"
-                    [alphaToCoverage]="get('alphaToCoverage')"
-                    [dashed]="get('dashed')"
-                    [dashScale]="get('dashScale') ?? lineMaterial.dashScale"
-                    [dashSize]="get('dashSize') ?? lineMaterial.dashSize"
-                    [dashOffset]="get('dashOffset') ?? lineMaterial.dashOffset"
-                    [gapSize]="get('gapSize') ?? lineMaterial.gapSize"
-                    [wireframe]="get('wireframe') ?? lineMaterial.wireframe"
-                    [worldUnits]="get('worldUnits')"
-                />
-            </ngt-primitive>
-        </ng-container>
+        <ngt-primitive *args="[line]" [ref]="lineRef" ngtCompound>
+            <ngt-primitive
+                *args="[get('lineGeometry')]"
+                attach="geometry"
+                (afterAttach)="onAfterAttach($any($event))"
+            />
+            <ngt-primitive
+                *args="[lineMaterial]"
+                attach="material"
+                [color]="get('color')"
+                [vertexColors]="Boolean(get('vertexColors'))"
+                [resolution]="get('materialResolution')"
+                [linewidth]="get('lineWidth')"
+                [alphaToCoverage]="get('alphaToCoverage')"
+                [dashed]="get('dashed')"
+                [dashScale]="get('dashScale') ?? lineMaterial.dashScale"
+                [dashSize]="get('dashSize') ?? lineMaterial.dashSize"
+                [dashOffset]="get('dashOffset') ?? lineMaterial.dashOffset"
+                [gapSize]="get('gapSize') ?? lineMaterial.gapSize"
+                [wireframe]="get('wireframe') ?? lineMaterial.wireframe"
+                [worldUnits]="get('worldUnits')"
+            />
+        </ngt-primitive>
     `,
-    imports: [NgtArgs, NgtRef],
+    imports: [NgtArgs],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class NgtsLine extends NgtsLineInput implements OnInit {

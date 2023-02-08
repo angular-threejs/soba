@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
-import { extend, injectBeforeRender, injectNgtRef, NgtRef, NgtRenderState, NgtRxStore } from 'angular-three';
+import { extend, injectBeforeRender, injectNgtRef, NgtRenderState, NgtRxStore } from 'angular-three';
 import * as THREE from 'three';
 import { Group } from 'three';
 
@@ -10,12 +10,11 @@ extend({ Group });
     standalone: true,
     template: `
         <ngt-group ngtCompound>
-            <ngt-group *ref="floatRef">
+            <ngt-group [ref]="floatRef">
                 <ng-content />
             </ngt-group>
         </ngt-group>
     `,
-    imports: [NgtRef],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class NgtsFloat extends NgtRxStore {
