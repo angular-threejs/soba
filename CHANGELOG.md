@@ -1,5 +1,7 @@
 
 
+## [1.6.0](https://github.com/angular-threejs/soba/compare/1.6.0-beta.0...1.6.0) (2023-02-08)
+
 ## [1.6.0-beta.0](https://github.com/angular-threejs/soba/compare/1.5.0...1.6.0-beta.0) (2023-02-08)
 
 
