@@ -1,5 +1,12 @@
 
 
+## [1.7.0](https://github.com/angular-threejs/soba/compare/1.6.0...1.7.0) (2023-02-08)
+
+
+### Features
+
+* revert *ref ([3839c72](https://github.com/angular-threejs/soba/commit/3839c7265ac58fd9aec89f86bdaeb9cc7e7d55a7))
+
 ## [1.6.0](https://github.com/angular-threejs/soba/compare/1.6.0-beta.0...1.6.0) (2023-02-08)
 
 ## [1.6.0-beta.0](https://github.com/angular-threejs/soba/compare/1.5.0...1.6.0-beta.0) (2023-02-08)
