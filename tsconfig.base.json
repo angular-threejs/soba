@@ -21,6 +21,7 @@
             "angular-three-soba/cameras": ["libs/angular-three-soba/cameras/src/index.ts"],
             "angular-three-soba/controls": ["libs/angular-three-soba/controls/src/index.ts"],
             "angular-three-soba/loaders": ["libs/angular-three-soba/loaders/src/index.ts"],
+            "angular-three-soba/materials": ["libs/angular-three-soba/materials/src/index.ts"],
             "angular-three-soba/misc": ["libs/angular-three-soba/misc/src/index.ts"],
             "angular-three-soba/performance": ["libs/angular-three-soba/performance/src/index.ts"],
             "angular-three-soba/shaders": ["libs/angular-three-soba/shaders/src/index.ts"],
