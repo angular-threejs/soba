@@ -21,9 +21,7 @@
     ],
     "license": "MIT",
     "exports": {
-        "./assets/*": {
-            "glsl": "./assets/*.glsl"
-        }
+        "./assets/*": "./assets/*"
     },
     "peerDependencies": {
         "@angular/common": "^15.1.0",
