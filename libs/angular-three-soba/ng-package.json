@@ -4,5 +4,12 @@
     "lib": {
         "entryFile": "src/index.ts"
     },
+    "assets": [
+        {
+            "input": "./shaders/src/assets/",
+            "glob": "**/*",
+            "output": "assets"
+        }
+    ],
     "allowedNonPeerDependencies": ["@nrwl/devkit"]
 }

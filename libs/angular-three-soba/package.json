@@ -20,6 +20,11 @@
         "renderer"
     ],
     "license": "MIT",
+    "exports": {
+        "./assets/*": {
+            "glsl": "./assets/*.glsl"
+        }
+    },
     "peerDependencies": {
         "@angular/common": "^15.1.0",
         "@angular/core": "^15.1.0",
