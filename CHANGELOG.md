@@ -1,5 +1,12 @@
 
 
+### [1.8.1](https://github.com/angular-threejs/soba/compare/1.8.0...1.8.1) (2023-02-10)
+
+
+### Bug Fixes
+
+* package exports for assets ([e9dee2f](https://github.com/angular-threejs/soba/commit/e9dee2fde73312223b704654fa73f099e006afdb))
+
 ## [1.8.0](https://github.com/angular-threejs/soba/compare/1.7.0...1.8.0) (2023-02-10)
 
 
