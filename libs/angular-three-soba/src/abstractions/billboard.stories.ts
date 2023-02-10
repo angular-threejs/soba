@@ -1,12 +1,10 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { extend, NgtArgs } from 'angular-three';
+import { NgtArgs } from 'angular-three';
 import { NgtsBillboard, NgtsText } from 'angular-three-soba/abstractions';
 import { NgtsOrbitControls } from 'angular-three-soba/controls';
-import { BoxGeometry, ConeGeometry, Group, Mesh, MeshStandardMaterial, PlaneGeometry } from 'three';
+import { BoxGeometry, ConeGeometry, PlaneGeometry } from 'three';
 import { makeCanvasOptions, StorybookSetup } from '../setup-canvas';
-
-extend({ Mesh, PlaneGeometry, BoxGeometry, ConeGeometry, MeshStandardMaterial, Group });
 
 @Component({
     selector: 'BillboardCone',
@@ -94,7 +92,7 @@ class Plane {
         <ngts-orbit-controls [enablePan]="true" [zoomSpeed]="0.5" />
     `,
     imports: [NgtsBillboard, NgtsOrbitControls, NgtsText, Cone, Box, Plane],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    schemas: [NO_ERRORS_SCHEMA],
 })
 class TextBillboardStory {
     @Input() follow = true;

@@ -1,13 +1,10 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { extend, NgtArgs, NgtBeforeRenderEvent } from 'angular-three';
+import { NgtArgs, NgtBeforeRenderEvent } from 'angular-three';
 import { NgtsOrbitControls } from 'angular-three-soba/controls';
 import { NgtsCameraShake } from 'angular-three-soba/staging';
 import * as THREE from 'three';
-import { BoxGeometry, Mesh, MeshBasicMaterial, MeshStandardMaterial, PlaneGeometry } from 'three';
 import { makeCanvasOptions, StorybookSetup } from '../setup-canvas';
-
-extend({ Mesh, BoxGeometry, MeshStandardMaterial, PlaneGeometry, MeshBasicMaterial });
 
 @Component({
     selector: 'CameraShakeScene',

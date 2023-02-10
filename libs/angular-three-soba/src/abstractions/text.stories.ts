@@ -1,11 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { extend } from 'angular-three';
 import { NgtsText } from 'angular-three-soba/abstractions';
-import { DoubleSide, MeshBasicMaterial } from 'three';
+import { DoubleSide } from 'three';
 import { makeCanvasOptions, StorybookSetup, turn } from '../setup-canvas';
-
-extend({ MeshBasicMaterial });
 
 @Component({
     standalone: true,

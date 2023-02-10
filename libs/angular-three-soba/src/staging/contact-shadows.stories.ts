@@ -1,11 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
 import { Meta, moduleMetadata, StoryFn, StoryObj } from '@storybook/angular';
-import { extend, NgtArgs, NgtBeforeRenderEvent } from 'angular-three';
+import { NgtArgs, NgtBeforeRenderEvent } from 'angular-three';
 import { NgtsContactShadows } from 'angular-three-soba/staging';
-import { Mesh, MeshToonMaterial, PlaneGeometry, SphereGeometry } from 'three';
 import { StorybookSetup } from '../setup-canvas';
-
-extend({ Mesh, SphereGeometry, MeshToonMaterial, PlaneGeometry });
 
 @Component({
     standalone: true,
@@ -34,7 +31,7 @@ class DefaultContactShadowsStory {
     @Input() colorized = false;
     readonly Math = Math;
 
-    onBeforeRender({ state: { clock }, object: mesh }: NgtBeforeRenderEvent<Mesh>) {
+    onBeforeRender({ state: { clock }, object: mesh }: NgtBeforeRenderEvent<THREE.Mesh>) {
         mesh.position.y = Math.sin(clock.getElapsedTime()) + 2;
     }
 }

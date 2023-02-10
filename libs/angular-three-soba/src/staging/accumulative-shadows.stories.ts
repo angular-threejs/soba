@@ -1,17 +1,14 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, OnInit } from '@angular/core';
 import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
-import { applyProps, extend, NgtArgs, NgtPush, NgtRxStore } from 'angular-three';
+import { applyProps, NgtArgs, NgtPush, NgtRxStore } from 'angular-three';
 import { NgtsOrbitControls } from 'angular-three-soba/controls';
 import { injectNgtsGLTFLoader } from 'angular-three-soba/loaders';
 import { NgtsAccumulativeShadows, NgtsEnvironment, NgtsRandomizedLights } from 'angular-three-soba/staging';
 import { map, Observable } from 'rxjs';
 import * as THREE from 'three';
-import { Color } from 'three';
 import { GLTF } from 'three-stdlib';
 import { FlakesTexture } from 'three/examples/jsm/textures/FlakesTexture';
 import { makeCanvasOptions, StorybookSetup } from '../setup-canvas';
-
-extend({ Color });
 
 interface SuziGLTF extends GLTF {
     materials: { default: THREE.MeshStandardMaterial };

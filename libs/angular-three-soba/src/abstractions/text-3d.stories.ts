@@ -1,12 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { extend } from 'angular-three';
 import { NgtsText3D } from 'angular-three-soba/abstractions';
 import { NgtsCenter, NgtsFloat } from 'angular-three-soba/staging';
-import { MeshNormalMaterial } from 'three';
 import { makeCanvasOptions, StorybookSetup } from '../setup-canvas';
-
-extend({ MeshNormalMaterial });
 
 @Component({
     standalone: true,
@@ -39,7 +35,7 @@ export default {
 export const Default: StoryObj = {
     render: (args) => ({
         props: {
-            options: makeCanvasOptions({ camera: { position: [0, 0, 5] } }),
+            options: makeCanvasOptions({ camera: { position: [0, 0, 10] } }),
             story: DefaultText3DStory,
             inputs: args,
         },

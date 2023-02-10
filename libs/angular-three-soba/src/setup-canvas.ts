@@ -18,7 +18,7 @@ import {
 import { extend, NgtArgs, NgtCanvas, NgtPerformance, NgtRxStore } from 'angular-three';
 import { NgtsOrbitControls } from 'angular-three-soba/controls';
 import { debounceTime, Observable } from 'rxjs';
-import { AmbientLight, Color, PointLight } from 'three';
+import * as THREE from 'three';
 
 interface CanvasOptions {
     camera?: {
@@ -52,7 +52,7 @@ const defaultCanvasOptions: CanvasOptions = {
     lights: true,
 };
 
-extend({ Color, AmbientLight, PointLight });
+extend(THREE);
 
 const CANVAS_OPTIONS = new InjectionToken<CanvasOptions>('canvas options');
 const STORY_COMPONENT = new InjectionToken<Type<unknown>>('story component');

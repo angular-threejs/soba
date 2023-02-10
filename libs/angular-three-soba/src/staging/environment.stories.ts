@@ -1,15 +1,12 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { extend, NgtArgs } from 'angular-three';
+import { NgtArgs } from 'angular-three';
 import { NgtsPerspectiveCamera } from 'angular-three-soba/cameras';
 import { NgtsOrbitControls } from 'angular-three-soba/controls';
 import { NgtsContactShadows, NgtsEnvironment, ngtsEnvironmentPresetsObj } from 'angular-three-soba/staging';
-import { BoxGeometry, Mesh, MeshStandardMaterial, TorusKnotGeometry } from 'three';
 import { makeCanvasOptions, StorybookSetup } from '../setup-canvas';
 
 const presets = Object.keys(ngtsEnvironmentPresetsObj);
-
-extend({ Mesh, MeshStandardMaterial, TorusKnotGeometry, BoxGeometry });
 
 @Component({
     standalone: true,

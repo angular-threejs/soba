@@ -1,12 +1,9 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
-import { extend, NgtArgs } from 'angular-three';
+import { NgtArgs } from 'angular-three';
 import { NgtsOrbitControls } from 'angular-three-soba/controls';
 import { NgtsDetailed } from 'angular-three-soba/performance';
-import { IcosahedronGeometry, Mesh, MeshBasicMaterial } from 'three';
 import { makeCanvasOptions, StorybookSetup } from '../setup-canvas';
-
-extend({ Mesh, IcosahedronGeometry, MeshBasicMaterial });
 
 @Component({
     standalone: true,

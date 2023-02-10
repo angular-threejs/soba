@@ -1,15 +1,12 @@
 import { NgIf } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
-import { extend, NgtAnyRecord, NgtArgs, NgtPush, NgtThreeEvent } from 'angular-three';
+import { NgtAnyRecord, NgtArgs, NgtPush, NgtThreeEvent } from 'angular-three';
 import { NgtsOrbitControls } from 'angular-three-soba/controls';
 import { injectNgtsGLTFLoader } from 'angular-three-soba/loaders';
 import { NgtsBounds, NgtsContactShadows, NGTS_BOUNDS_API } from 'angular-three-soba/staging';
 import { map } from 'rxjs';
-import { Color, Group, HemisphereLight, Mesh, SpotLight } from 'three';
 import { makeCanvasOptions, StorybookSetup } from '../setup-canvas';
-
-extend({ Mesh, Color, SpotLight, HemisphereLight, Group });
 
 @Component({
     selector: 'Model[name]',
@@ -25,7 +22,7 @@ extend({ Mesh, Color, SpotLight, HemisphereLight, Group });
 })
 class Model {
     private readonly models$ = injectNgtsGLTFLoader('soba/bounds-assets.glb');
-    readonly model$ = this.models$.pipe(map(({ nodes }) => nodes[this.name] as Mesh));
+    readonly model$ = this.models$.pipe(map(({ nodes }) => nodes[this.name] as THREE.Mesh));
 
     @Input() name = '';
 }
