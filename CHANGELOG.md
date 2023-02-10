@@ -1,5 +1,20 @@
 
 
+## [1.8.0](https://github.com/angular-threejs/soba/compare/1.7.0...1.8.0) (2023-02-10)
+
+
+### Features
+
+* add mesh wobble, mesh reflector, and mesh distort material ([0100975](https://github.com/angular-threejs/soba/commit/0100975b1f0b7e40c28fbbedc19cf482c551312c))
+* add reflector ([d400a0d](https://github.com/angular-threejs/soba/commit/d400a0dbcc6af44a1a8664df7cae28daa3734b0e))
+
+
+### Documentations
+
+* add sparkles ([f5c8ef9](https://github.com/angular-threejs/soba/commit/f5c8ef9340559450463cbdea335612a2770f4cb8))
+* add stage ([1bddf54](https://github.com/angular-threejs/soba/commit/1bddf546211b1aa611bdfacd7fa2a835a5d8aed5))
+* add stars ([5861eb5](https://github.com/angular-threejs/soba/commit/5861eb507ce716fa7eb39c1fee89b1445b434f29))
+
 ## [1.7.0](https://github.com/angular-threejs/soba/compare/1.6.0...1.7.0) (2023-02-08)
 
 
