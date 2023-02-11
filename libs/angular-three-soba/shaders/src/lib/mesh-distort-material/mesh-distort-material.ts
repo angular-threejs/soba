@@ -5,15 +5,22 @@ interface Uniform<T> {
     value: T;
 }
 
+/**
+ * npm i -D raw-loader glslify-loader
+ * Usage: import distort from 'raw-loader!glslify-loader!angular-three-soba/assets/distort.vert.glsl'
+ *
+ * provideNgtsMeshDistortMaterialShader(distort)
+ */
+
 export type MeshDistortMaterial = Type<{ time: number; distort: number; radius: number } & THREE.MeshPhysicalMaterial>;
 
 export const NGTS_DISTORT_MATERIAL_SHADER = new InjectionToken<MeshDistortMaterial>('DistortMaterialShader');
 
-export function provideDistortMaterialShader(distortShader: string) {
+export function provideNgtsMeshDistortMaterialShader(distortShader: string) {
     return {
         provide: NGTS_DISTORT_MATERIAL_SHADER,
         useFactory: () => {
-            return class MeshDistortMaterial extends THREE.MeshPhysicalMaterial {
+            return class extends THREE.MeshPhysicalMaterial {
                 _time: Uniform<number>;
                 _distort: Uniform<number>;
                 _radius: Uniform<number>;

@@ -2,7 +2,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
 import { Meta, moduleMetadata, StoryFn, StoryObj } from '@storybook/angular';
 import { injectBeforeRender, injectNgtRef, NgtArgs } from 'angular-three';
 import { NgtsMeshDistortMaterial } from 'angular-three-soba/materials';
-import { MeshDistortMaterial, provideDistortMaterialShader } from 'angular-three-soba/shaders';
+import { MeshDistortMaterial, provideNgtsMeshDistortMaterialShader } from 'angular-three-soba/shaders';
 import { StorybookSetup } from '../setup-canvas';
 // @ts-ignore
 import distort from '../../shaders/src/assets/distort.vert.glsl';
@@ -50,7 +50,7 @@ export default {
     decorators: [
         moduleMetadata({
             imports: [StorybookSetup],
-            providers: [provideDistortMaterialShader(distort)],
+            providers: [provideNgtsMeshDistortMaterialShader(distort)],
         }),
     ],
 } as Meta;
