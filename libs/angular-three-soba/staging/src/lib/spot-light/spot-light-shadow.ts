@@ -10,7 +10,7 @@ import { NgtsSpotLightShadowShader } from './spot-light-shadow-shader';
     standalone: true,
     template: `
         <ngts-spot-light-shadow-shader
-            *ngIf="!!get('shader')"
+            *ngIf="!!get('shader'); else noShader"
             [distance]="get('distance')"
             [shader]="get('shader')"
             [alphaTest]="get('alphaTest')"
@@ -19,15 +19,16 @@ import { NgtsSpotLightShadowShader } from './spot-light-shadow-shader';
             [width]="get('width')"
             [height]="get('height')"
         />
-        <ngts-spot-light-shadow-no-shader
-            *ngIf="!get('shader')"
-            [distance]="get('distance')"
-            [alphaTest]="get('alphaTest')"
-            [scale]="get('scale')"
-            [map]="get('map')"
-            [width]="get('width')"
-            [height]="get('height')"
-        />
+        <ng-template #noShader>
+            <ngts-spot-light-shadow-no-shader
+                [distance]="get('distance')"
+                [alphaTest]="get('alphaTest')"
+                [scale]="get('scale')"
+                [map]="get('map')"
+                [width]="get('width')"
+                [height]="get('height')"
+            />
+        </ng-template>
     `,
     imports: [NgtsSpotLightShadowShader, NgtsSpotLightShadowNoShader, NgIf, NgtPush],
 })

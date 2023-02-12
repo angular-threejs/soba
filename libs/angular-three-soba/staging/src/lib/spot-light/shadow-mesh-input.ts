@@ -1,10 +1,8 @@
-import { ChangeDetectorRef, Directive, inject, Input } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 import { NgtRxStore } from 'angular-three';
 
 @Directive()
 export abstract class NgtsSpotLightShadowMeshInput extends NgtRxStore {
-    private readonly cdr = inject(ChangeDetectorRef);
-
     @Input() set distance(distance: number) {
         this.set({ distance });
     }
@@ -23,7 +21,6 @@ export abstract class NgtsSpotLightShadowMeshInput extends NgtRxStore {
 
     @Input() set shader(shader: string) {
         this.set({ shader });
-        this.cdr.detectChanges();
     }
 
     @Input() set width(width: number) {

@@ -1,7 +1,7 @@
 import { NgIf } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input, OnInit } from '@angular/core';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { checkUpdate, createRunInContext, NgtArgs, NgtInjectedRef, NgtPush, NgtRxStore, NgtStore } from 'angular-three';
+import { checkUpdate, createRunInContext, NgtArgs, NgtInjectedRef, NgtPush, NgtRxStore } from 'angular-three';
 import { NgtsPerspectiveCamera } from 'angular-three-soba/cameras';
 import { NgtsOrbitControls } from 'angular-three-soba/controls';
 import { injectNgtsTextureLoader } from 'angular-three-soba/loaders';
@@ -11,8 +11,6 @@ import { map, tap } from 'rxjs';
 import * as THREE from 'three';
 import { makeCanvasOptions, StorybookSetup } from '../setup-canvas';
 // @ts-ignore
-
-// TODO(chau): investigate why ngIf doesn't work
 
 @Component({
     standalone: true,
@@ -78,6 +76,8 @@ class ShadowsSpotLightStory {
     readonly Math = Math;
     readonly MathUtils = THREE.MathUtils;
 
+    readonly cdr = inject(ChangeDetectorRef);
+
     readonly shader = /* glsl */ `
             varying vec2 vUv;
             uniform sampler2D uShadowMap;
@@ -110,18 +110,12 @@ class ShadowsSpotLightStory {
     );
 
     readonly leaf$ = injectNgtsTextureLoader('/soba/textures/other/leaves.jpg');
-
-    readonly store = inject(NgtStore);
-
-    ngOnInit() {
-        console.log(this.store.get('scene'));
-    }
 }
 
 @Component({
     standalone: true,
     template: `
-        <ng-container *ngIf="depthBuffer.nativeElement">
+        <ng-container *ngIf="depthBuffer?.nativeElement">
             <ngts-spot-light
                 [penumbra]="0.5"
                 [depthBuffer]="depthBuffer.nativeElement"

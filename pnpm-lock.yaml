@@ -43,7 +43,7 @@ specifiers:
   '@types/three': ^0.149.0
   '@typescript-eslint/eslint-plugin': ^5.51.0
   '@typescript-eslint/parser': ^5.51.0
-  angular-three: ^1.6.9
+  angular-three: ^1.6.11
   dotenv-cli: ^7.0.0
   eslint: ~8.34.0
   eslint-config-prettier: 8.6.0
@@ -87,7 +87,7 @@ dependencies:
   '@angular/router': 15.1.4_g7mjdvsmeszabti4mywkhjexwi
   '@rx-angular/state': 1.7.0_xpftpgyr2j6ijglyfnh3f5jave
   '@swc/helpers': 0.4.14
-  angular-three: 1.6.9_nmlawmh7jq7hh6ha4anyvue5hi
+  angular-three: 1.6.11_nmlawmh7jq7hh6ha4anyvue5hi
   rxjs: 7.8.0
   stats.js: 0.17.0
   three: 0.149.0
@@ -7362,8 +7362,8 @@ packages:
       require-from-string: 2.0.2
       uri-js: 4.4.1
 
-  /angular-three/1.6.9_nmlawmh7jq7hh6ha4anyvue5hi:
-    resolution: {integrity: sha512-5t0xHxO/85JnBvT/PJkCB3rlsVdxUPGMO2UNiYPsf3EBMbUjYHHi4zvgXruSbV6Xt8gkYu62rg/bG8Tud4Em/g==}
+  /angular-three/1.6.11_nmlawmh7jq7hh6ha4anyvue5hi:
+    resolution: {integrity: sha512-BcNBAPvLmVRzH0f+adS+IVZ1WdeAmJJrOrkIle4UOqmwl0hHBRUl4GjcMhwEkNh5Sz3QRjLQzWkjImAcm+uTcA==}
     peerDependencies:
       '@angular/common': ^15.1.0
       '@angular/core': ^15.1.0
