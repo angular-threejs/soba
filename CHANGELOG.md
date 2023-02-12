@@ -1,5 +1,12 @@
 
 
+### [1.9.1](https://github.com/angular-threejs/soba/compare/1.9.0...1.9.1) (2023-02-12)
+
+
+### Bug Fixes
+
+* clean up spotlight ([47ea727](https://github.com/angular-threejs/soba/commit/47ea7276d9eca3c15a138fe42f7d2c34236ec0e5))
+
 ## [1.9.0](https://github.com/angular-threejs/soba/compare/1.8.1...1.9.0) (2023-02-12)
 
 
