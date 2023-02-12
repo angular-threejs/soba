@@ -1,5 +1,17 @@
 
 
+## [1.9.0](https://github.com/angular-threejs/soba/compare/1.8.1...1.9.0) (2023-02-12)
+
+
+### Features
+
+* add spotlight and related things ([d1ecc74](https://github.com/angular-threejs/soba/commit/d1ecc745874bed5c0df1dcafe974c3dec53db3bb))
+
+
+### Bug Fixes
+
+* rename mesh distort shader provider ([1ce9125](https://github.com/angular-threejs/soba/commit/1ce91259aa83ff837f54473ca5fef97b2ae9f38b))
+
 ### [1.8.1](https://github.com/angular-threejs/soba/compare/1.8.0...1.8.1) (2023-02-10)
 
 
