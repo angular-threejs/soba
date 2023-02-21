@@ -46,8 +46,10 @@ export function injectShadowMeshCommon(
         dir.normalize().multiplyScalar(len * distance);
         pos.copy(A).add(dir);
 
-        mesh.nativeElement.position.copy(pos);
-        mesh.nativeElement.lookAt(spotLight.nativeElement.target.position);
+        if (mesh.nativeElement) {
+            mesh.nativeElement.position.copy(pos);
+            mesh.nativeElement.lookAt(spotLight.nativeElement.target.position);
+        }
     });
 
     return commonEffect;

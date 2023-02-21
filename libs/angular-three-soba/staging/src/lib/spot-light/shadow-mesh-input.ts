@@ -30,4 +30,6 @@ export abstract class NgtsSpotLightShadowMeshInput extends NgtRxStore {
     @Input() set height(height: number) {
         this.set({ height });
     }
+
+    readonly map$ = this.select('map');
 }

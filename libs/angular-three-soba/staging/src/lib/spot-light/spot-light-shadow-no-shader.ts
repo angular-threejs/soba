@@ -18,7 +18,7 @@ extend({ Mesh, PlaneGeometry, MeshBasicMaterial });
                 [transparent]="true"
                 [side]="DoubleSide"
                 [alphaTest]="get('alphaTest')"
-                [alphaMap]="key$('map') | ngtPush"
+                [alphaMap]="map$ | ngtPush"
                 [opacity]="spotLightApi.debug ? 1 : 0"
             >
                 <ng-content />

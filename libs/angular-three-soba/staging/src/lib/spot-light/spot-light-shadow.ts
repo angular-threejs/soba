@@ -1,6 +1,5 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { NgtPush } from 'angular-three';
 import { NgtsSpotLightShadowMeshInput } from './shadow-mesh-input';
 import { NgtsSpotLightShadowNoShader } from './spot-light-shadow-no-shader';
 import { NgtsSpotLightShadowShader } from './spot-light-shadow-shader';
@@ -10,7 +9,7 @@ import { NgtsSpotLightShadowShader } from './spot-light-shadow-shader';
     standalone: true,
     template: `
         <ngts-spot-light-shadow-shader
-            *ngIf="!!get('shader'); else noShader"
+            *ngIf="get('shader'); else noShader"
             [distance]="get('distance')"
             [shader]="get('shader')"
             [alphaTest]="get('alphaTest')"
@@ -30,6 +29,6 @@ import { NgtsSpotLightShadowShader } from './spot-light-shadow-shader';
             />
         </ng-template>
     `,
-    imports: [NgtsSpotLightShadowShader, NgtsSpotLightShadowNoShader, NgIf, NgtPush],
+    imports: [NgtsSpotLightShadowShader, NgtsSpotLightShadowNoShader, NgIf],
 })
 export class NgtsSpotLightShadow extends NgtsSpotLightShadowMeshInput {}

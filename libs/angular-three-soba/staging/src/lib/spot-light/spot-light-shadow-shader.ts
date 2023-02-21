@@ -110,7 +110,8 @@ export class NgtsSpotLightShadowShader extends NgtsSpotLightShadowMeshInput impl
         injectBeforeRender(({ delta, gl }) => {
             this.uniforms.uTime.value += delta;
 
-            const { fsQuad, renderTarget } = this.get();
+            const fsQuad = this.get('fsQuad');
+            const renderTarget = this.get('renderTarget');
             if (fsQuad && renderTarget) {
                 gl.setRenderTarget(renderTarget);
                 fsQuad.render(gl);
