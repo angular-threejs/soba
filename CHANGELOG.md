@@ -1,5 +1,18 @@
 
 
+### [1.9.2](https://github.com/angular-threejs/soba/compare/1.9.1...1.9.2) (2023-02-21)
+
+
+### Bug Fixes
+
+* adjust spotlight shadow ([435ef73](https://github.com/angular-threejs/soba/commit/435ef734d1ff7a349af5894cba85d1fcc88310c9))
+* match billboard fix with drei ([2e69972](https://github.com/angular-threejs/soba/commit/2e69972ee7229a6d9c264ed3e4b7a914fb0c39ec))
+
+
+### Documentations
+
+* update LTR text ([0440448](https://github.com/angular-threejs/soba/commit/044044864d3431106009ebcaf22e5e97d12e66d6))
+
 ### [1.9.1](https://github.com/angular-threejs/soba/compare/1.9.0...1.9.1) (2023-02-12)
 
 
