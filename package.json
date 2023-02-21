@@ -18,15 +18,15 @@
     "@angular/cli": "~15.1.6",
     "@angular/compiler-cli": "~15.1.5",
     "@angular/language-service": "~15.1.5",
-    "@nrwl/angular": "15.7.1",
-    "@nrwl/devkit": "15.7.1",
-    "@nrwl/eslint-plugin-nx": "15.7.1",
-    "@nrwl/jest": "15.7.1",
-    "@nrwl/js": "15.7.1",
-    "@nrwl/linter": "15.7.1",
-    "@nrwl/nx-plugin": "15.7.1",
-    "@nrwl/storybook": "15.7.1",
-    "@nrwl/workspace": "15.7.1",
+    "@nrwl/angular": "15.7.2",
+    "@nrwl/devkit": "15.7.2",
+    "@nrwl/eslint-plugin-nx": "15.7.2",
+    "@nrwl/jest": "15.7.2",
+    "@nrwl/js": "15.7.2",
+    "@nrwl/linter": "15.7.2",
+    "@nrwl/nx-plugin": "15.7.2",
+    "@nrwl/storybook": "15.7.2",
+    "@nrwl/workspace": "15.7.2",
     "@release-it/bumper": "^4.0.2",
     "@release-it/conventional-changelog": "^5.1.1",
     "@schematics/angular": "~15.1.6",
@@ -55,7 +55,7 @@
     "jest-preset-angular": "~12.2.6",
     "jsonc-eslint-parser": "^2.1.0",
     "ng-packagr": "~15.1.2",
-    "nx": "15.7.1",
+    "nx": "15.7.2",
     "postcss": "^8.4.21",
     "postcss-import": "~15.1.0",
     "postcss-preset-env": "~8.0.1",
@@ -90,3 +90,4 @@
     "zone.js": "~0.12.0"
   }
 }
+
