@@ -1,5 +1,12 @@
 
 
+### [1.9.3](https://github.com/angular-threejs/soba/compare/1.9.2...1.9.3) (2023-02-21)
+
+
+### Bug Fixes
+
+* remove console log ([9cb7f43](https://github.com/angular-threejs/soba/commit/9cb7f4332d2860fec7d490fad804fb8400d6f465))
+
 ### [1.9.2](https://github.com/angular-threejs/soba/compare/1.9.1...1.9.2) (2023-02-21)
 
 
