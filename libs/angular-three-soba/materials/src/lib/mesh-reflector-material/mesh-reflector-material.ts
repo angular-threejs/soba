@@ -240,7 +240,6 @@ export class NgtsMeshReflectorMaterial extends NgtRxStore {
         );
 
         injectBeforeRender(this.onBeforeRender.bind(this));
-        console.log(this.materialRef);
     }
 
     private beforeRender(state: NgtRenderState) {

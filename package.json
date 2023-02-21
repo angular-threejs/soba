@@ -80,7 +80,7 @@
         "@angular/router": "~15.1.5",
         "@rx-angular/state": "^1.7.0",
         "@swc/helpers": "~0.4.14",
-        "angular-three": "1.9.7",
+        "angular-three": "1.9.9",
         "rxjs": "~7.8.0",
         "stats.js": "^0.17.0",
         "three": "0.149",
