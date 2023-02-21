@@ -35,17 +35,18 @@ export class NgtsBillboard extends NgtRxStore {
         this.set({ follow: true, lockX: false, lockY: false, lockZ: false });
     }
 
-    onBeforeRender(event: NgtBeforeRenderEvent<Group>) {
+    onBeforeRender({ state, object }: NgtBeforeRenderEvent<Group>) {
         const { follow, lockX, lockY, lockZ } = this.get();
         if (!follow) return;
 
         // save prev rotation in case we're locking axises
-        const prevRotation = event.object.rotation.clone();
+        const prevRotation = object.rotation.clone();
         // always face the camera
-        event.object.quaternion.copy(event.state.camera.quaternion);
+        state.camera.getWorldQuaternion(object.quaternion);
+
         // readjust any axis that is locked
-        if (lockX) event.object.rotation.x = prevRotation.x;
-        if (lockY) event.object.rotation.y = prevRotation.y;
-        if (lockZ) event.object.rotation.z = prevRotation.z;
+        if (lockX) object.rotation.x = prevRotation.x;
+        if (lockY) object.rotation.y = prevRotation.y;
+        if (lockZ) object.rotation.z = prevRotation.z;
     }
 }
