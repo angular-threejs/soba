@@ -70,6 +70,7 @@ specifiers:
   rxjs: ~7.8.0
   stats.js: ^0.17.0
   three: '0.150'
+  three-mesh-bvh: ^0.5.23
   three-stdlib: ^2.21.8
   troika-three-text: ^0.47.1
   ts-jest: 29.0.5
@@ -94,6 +95,7 @@ dependencies:
   rxjs: 7.8.0
   stats.js: 0.17.0
   three: 0.150.1
+  three-mesh-bvh: 0.5.23_three@0.150.1
   three-stdlib: 2.21.8_three@0.150.1
   troika-three-text: 0.47.1_three@0.150.1
   tslib: 2.5.0
@@ -19899,6 +19901,14 @@ packages:
   /text-table/0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
     dev: true
+
+  /three-mesh-bvh/0.5.23_three@0.150.1:
+    resolution: {integrity: sha512-nyk+MskdyDgECqkxdv57UjazqqhrMi+Al9PxJN6yFtx1CTW4r0eCQ27FtyYKY5gCIWhxjtNfWYDPVy8lzx6LkA==}
+    peerDependencies:
+      three: '>= 0.123.0'
+    dependencies:
+      three: 0.150.1
+    dev: false
 
   /three-stdlib/2.21.8_three@0.150.1:
     resolution: {integrity: sha512-kqisiKvO4mSy59v5vWqBQSH8famLxp7Z51LxpMJI9GwDxqODaW02rhIwmjYDEzZWNFpjZpoDHVGbdpeHf8h3SA==}

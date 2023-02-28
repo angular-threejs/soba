@@ -84,6 +84,7 @@
         "rxjs": "~7.8.0",
         "stats.js": "^0.17.0",
         "three": "0.150",
+        "three-mesh-bvh": "^0.5.23",
         "three-stdlib": "^2.21.8",
         "troika-three-text": "^0.47.1",
         "tslib": "^2.5.0",
