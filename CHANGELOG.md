@@ -1,5 +1,12 @@
 
 
+## [1.10.0](https://github.com/angular-threejs/soba/compare/1.9.3...1.10.0) (2023-02-28)
+
+
+### Features
+
+* add mesh refraction material as shader material (no component yet) ([3caa955](https://github.com/angular-threejs/soba/commit/3caa955f9305baa7f22087eaf38d538866529a28))
+
 ### [1.9.3](https://github.com/angular-threejs/soba/compare/1.9.2...1.9.3) (2023-02-21)
 
 
