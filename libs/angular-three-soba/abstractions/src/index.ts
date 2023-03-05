@@ -1,6 +1,7 @@
 export * from './lib/billboard/billboard';
 export * from './lib/catmull-rom-line/catmull-rom-line';
 export * from './lib/cubic-bezier-line/cubic-bezier-line';
+export * from './lib/edges/edges';
 export * from './lib/gizmo-helper/gizmo-helper';
 export * from './lib/gizmo-helper/gizmo-viewcube/gizmo-viewcube';
 export * from './lib/gizmo-helper/gizmo-viewport/gizmo-viewport';

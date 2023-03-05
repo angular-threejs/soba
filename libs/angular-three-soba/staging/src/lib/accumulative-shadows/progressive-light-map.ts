@@ -1,4 +1,4 @@
-import { shaderMaterial } from 'angular-three-soba/shaders';
+import { DiscardMaterial } from 'angular-three-soba/shaders';
 import * as THREE from 'three';
 
 function isLight(object: any): object is THREE.Light {
@@ -8,12 +8,6 @@ function isLight(object: any): object is THREE.Light {
 function isGeometry(object: any): object is THREE.Mesh {
     return !!object.geometry;
 }
-
-const DiscardMaterial = shaderMaterial(
-    {},
-    'void main() { gl_Position = vec4((uv - 0.5) * 2.0, 1.0, 1.0); }',
-    'void main() { discard; }'
-);
 
 export class ProgressiveLightMap {
     renderer: THREE.WebGLRenderer;

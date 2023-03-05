@@ -9,7 +9,7 @@ export class NgtsCameraContent {
     static ngTemplateContextGuard(
         _: NgtsCameraContent,
         ctx: unknown
-    ): ctx is { target: THREE.WebGLRenderTarget; group?: THREE.Group } {
+    ): ctx is { fbo: THREE.WebGLRenderTarget; group?: THREE.Group } {
         return true;
     }
 }
