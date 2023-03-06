@@ -1,5 +1,12 @@
 
 
+## [1.11.0](https://github.com/angular-threejs/soba/compare/1.10.0...1.11.0) (2023-03-06)
+
+
+### Features
+
+* mesh refarction but it's half working (maybe caustics issue) ([80b2b10](https://github.com/angular-threejs/soba/commit/80b2b10c962870b7b597fe1757a4f0b9bcb435ea))
+
 ## [1.10.0](https://github.com/angular-threejs/soba/compare/1.9.3...1.10.0) (2023-02-28)
 
 
