@@ -27,12 +27,12 @@ extend({ Mesh, Color, AmbientLight, SpotLight, PointLight, SphereGeometry, MeshS
             <ng-template [ngtsCameraContent]="true" let-texture="fbo">
                 <ngts-caustics
                     color="white"
-                    [backfaces]="true"
+                    [backside]="true"
                     [position]="[0, -0.5, 0]"
                     [lightSource]="[5, 5, -10]"
                     [worldRadius]="1"
                     [ior]="1.8"
-                    [backfaceIor]="1.1"
+                    [backsideIOR]="1.1"
                     [intensity]="0.1"
                 >
                     <ngt-mesh

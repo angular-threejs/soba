@@ -12,7 +12,6 @@ import {
     Output,
     TemplateRef,
 } from '@angular/core';
-import { selectSlice } from '@rx-angular/state';
 import { extend, injectNgtRef, NgtPortal, NgtPortalContent, NgtRxStore, NgtStore } from 'angular-three';
 import { NgtsOrthographicCamera } from 'angular-three-soba/cameras';
 import { combineLatest, map } from 'rxjs';
@@ -191,7 +190,13 @@ export class NgtsGizmoHelper extends NgtRxStore implements OnInit {
     private setGizmoPosition() {
         this.connect(
             'gizmoPosition',
-            combineLatest([this.store.select('size'), this.select(selectSlice(['alignment', 'margin']))]).pipe(
+            combineLatest([
+                this.store.select('size'),
+                combineLatest({
+                    alignment: this.select('alignment'),
+                    margin: this.select('margin'),
+                }),
+            ]).pipe(
                 map(([size, { alignment, margin }]) => {
                     const [marginX, marginY] = margin;
                     const x = alignment.endsWith('-center')

@@ -60,7 +60,7 @@ function randomizedLightsApiFactory(randomizedLights: NgtsRandomizedLights) {
     return api;
 }
 
-@Directive({ selector: 'ngts-randomized-lights-consumer', standalone: true })
+@Directive({ selector: '[ngtsRandomizedLightsConsumer]', standalone: true })
 export class RandomizedLightsConsumer {
     constructor() {
         inject(NGTS_RANDOMIZED_LIGHTS_API);
@@ -81,7 +81,7 @@ export class RandomizedLightsConsumer {
                 <ngt-vector2 *args="[get('mapSize'), get('mapSize')]" attach="shadow.mapSize" />
                 <ngt-orthographic-camera *args="get('cameraArgs')" attach="shadow.camera" />
             </ngt-directional-light>
-            <ngts-randomized-lights-consumer />
+            <ng-container ngtsRandomizedLightsConsumer />
         </ngt-group>
     `,
     imports: [RandomizedLightsConsumer, NgtArgs, NgtRepeat],

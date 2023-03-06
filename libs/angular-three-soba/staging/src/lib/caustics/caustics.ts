@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, inject, Input, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, inject, Input, OnInit } from '@angular/core';
 import { extend, injectNgtRef, NgtRxStore, NgtStore } from 'angular-three';
 import { NgtsEdges } from 'angular-three-soba/abstractions';
 import { injectNgtsFBO } from 'angular-three-soba/misc';
@@ -189,7 +189,6 @@ export class NgtsCaustics extends NgtRxStore implements OnInit {
     );
 
     private readonly store = inject(NgtStore);
-    private readonly cdr = inject(ChangeDetectorRef);
 
     override initialize(): void {
         this.set({
@@ -232,43 +231,41 @@ export class NgtsCaustics extends NgtRxStore implements OnInit {
         this.effect(
             combineLatest([
                 this.sceneRef.$,
-                this.sceneRef.children$('both'),
+                this.sceneRef.children$(),
                 this.causticsRef.$,
                 this.cameraRef.$,
-                this.planeRef.$,
-                this.planeRef.children$('both'),
                 this.normalTargetFbo.$,
                 this.normalTargetBFbo.$,
                 this.causticsTargetFbo.$,
                 this.causticsTargetBFbo.$,
+                this.planeRef.$,
+                this.planeRef.children$('both'),
             ]),
             ([
                 scene,
                 children,
                 caustics,
                 camera,
-                plane,
-                ,
                 normalTarget,
                 normalTargetB,
                 causticsTarget,
                 causticsTargetB,
+                plane,
             ]) => {
-                const v = new THREE.Vector3();
-                const lpF = new THREE.Frustum();
-                const lpM = new THREE.Matrix4();
-                const lpP = new THREE.Plane();
-
-                const lightDir = new THREE.Vector3();
-                const lightDirInv = new THREE.Vector3();
-                const bounds = new THREE.Box3();
-                const focusPos = new THREE.Vector3();
-
-                let count = 0;
-
                 caustics.updateWorldMatrix(false, true);
 
                 if (children.length > 1) {
+                    const v = new THREE.Vector3();
+                    const lpF = new THREE.Frustum();
+                    const lpM = new THREE.Matrix4();
+                    const lpP = new THREE.Plane();
+
+                    const lightDir = new THREE.Vector3();
+                    const lightDirInv = new THREE.Vector3();
+                    const bounds = new THREE.Box3();
+                    const focusPos = new THREE.Vector3();
+
+                    let count = 0;
                     return this.store.get('internal').subscribe(({ gl }) => {
                         const {
                             frames,
@@ -399,10 +396,10 @@ export class NgtsCaustics extends NgtRxStore implements OnInit {
 
                             // Render front face caustics
                             causticsMaterial.ior = ior;
-                            // @ts-ignore
-                            plane.material.lightProjMatrix = camera.projectionMatrix;
-                            // @ts-ignore
-                            plane.material.lightViewMatrix = camera.matrixWorldInverse;
+                            (plane.material as CausticsProjectionMaterialType).lightProjMatrix =
+                                camera.projectionMatrix;
+                            (plane.material as CausticsProjectionMaterialType).lightViewMatrix =
+                                camera.matrixWorldInverse;
                             causticsMaterial.normalTexture = normalTarget.texture;
                             causticsMaterial.depthTexture = normalTarget.depthTexture;
                             gl.setRenderTarget(causticsTarget);

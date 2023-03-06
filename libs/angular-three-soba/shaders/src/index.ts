@@ -9,4 +9,5 @@ export * from './lib/mesh-refraction-material/mesh-refraction-material';
 export * from './lib/mesh-transmission-material/mesh-transmission-material';
 export * from './lib/mesh-wobble-material/mesh-wobble-material';
 export * from './lib/shader-material/shader-material';
+export * from './lib/soft-shadow-material/soft-shadow-material';
 export * from './lib/spot-light-material/spot-light-material';

@@ -1,50 +1,10 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Directive, inject, InjectionToken, Input } from '@angular/core';
 import { extend, getLocalState, injectNgtRef, NgtRxStore, NgtStore } from 'angular-three';
-import { shaderMaterial } from 'angular-three-soba/shaders';
+import { SoftShadowMaterial, SoftShadowMaterialInputs } from 'angular-three-soba/shaders';
 import { combineLatest, Subject } from 'rxjs';
 import * as THREE from 'three';
 import { Group, Mesh, PlaneGeometry } from 'three';
 import { ProgressiveLightMap } from './progressive-light-map';
-
-const SoftShadowMaterial = shaderMaterial(
-    {
-        color: new THREE.Color(),
-        blend: 2.0,
-        alphaTest: 0.75,
-        opacity: 0,
-        map: null,
-    },
-    // language=GLSL
-    `
-varying vec2 vUv;
-void main() {
-  gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.);
-  vUv = uv;
-}
-  `,
-    // language=GLSL
-    `
-varying vec2 vUv;
-uniform sampler2D map;
-uniform vec3 color;
-uniform float blend;
-uniform float opacity;
-uniform float alphaTest;
-void main() {
-  vec4 sampledDiffuseColor = texture2D(map, vUv);
-  gl_FragColor = vec4(color * sampledDiffuseColor.r * blend, max(0.0, (1.0 - (sampledDiffuseColor.r + sampledDiffuseColor.g + sampledDiffuseColor.b) / alphaTest)) * opacity);
-  #include <tonemapping_fragment>
-  #include <encodings_fragment>
-}
-  `
-);
-
-type SoftShadowMaterialInputs = {
-    map: THREE.Texture;
-    color?: THREE.ColorRepresentation;
-    alphaTest?: number;
-    blend?: number;
-};
 
 extend({ SoftShadowMaterial, Group, Mesh, PlaneGeometry });
 
@@ -166,7 +126,7 @@ function accumulativeShadowsApiFactory(accumulativeShadows: NgtsAccumulativeShad
     return api;
 }
 
-@Directive({ selector: 'ngts-accumulative-shadows-consumer', standalone: true })
+@Directive({ selector: '[ngtsAccumulativeShadowsConsumer]', standalone: true })
 export class AccumulativeShadowsConsumer {
     constructor() {
         inject(NGTS_ACCUMULATIVE_SHADOWS_API);
@@ -180,7 +140,7 @@ export class AccumulativeShadowsConsumer {
         <ngt-group ngtCompound>
             <ngt-group [ref]="accumulativeShadowsRef" [traverse]="nullTraverse">
                 <ng-content />
-                <ngts-accumulative-shadows-consumer />
+                <ng-container ngtsAccumulativeShadowsConsumer />
             </ngt-group>
             <ngt-mesh [ref]="meshRef" [receiveShadow]="true" [scale]="get('scale')" [rotation]="[-Math.PI / 2, 0, 0]">
                 <ngt-plane-geometry />

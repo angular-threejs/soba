@@ -4,21 +4,12 @@ import { combineLatest, map, of, switchMap } from 'rxjs';
 import { Mesh } from 'three';
 import { FontLoader, TextGeometry } from 'three-stdlib';
 
-declare type Glyph = {
-    _cachedOutline: string[];
-    ha: number;
-    o: string;
-};
+declare type Glyph = { _cachedOutline: string[]; ha: number; o: string };
 
 declare type FontData = {
-    boundingBox: {
-        yMax: number;
-        yMin: number;
-    };
+    boundingBox: { yMax: number; yMin: number };
     familyName: string;
-    glyphs: {
-        [k: string]: Glyph;
-    };
+    glyphs: { [k: string]: Glyph };
     resolution: number;
     underlineThickness: number;
 };

@@ -203,8 +203,4 @@ export class NgtsMeshTranmissionMaterial extends NgtRxStore {
             }
         });
     }
-
-    ngOnInit() {
-        console.log(this.materialRef);
-    }
 }

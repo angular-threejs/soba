@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnInit } from '@angular/core';
-import { extend, injectNgtRef, NgtRxStore } from 'angular-three';
+import { extend, injectNgtRef, NgtBeforeRenderEvent, NgtRxStore } from 'angular-three';
 import { combineLatest } from 'rxjs';
 import { LOD } from 'three';
 
@@ -9,7 +9,7 @@ extend({ LOD });
     selector: 'ngts-detailed[distances]',
     standalone: true,
     template: `
-        <ngt-lOD [ref]="lodRef" ngtCompound (beforeRender)="$any($event).object.update($any($event).state.camera)">
+        <ngt-lOD [ref]="lodRef" ngtCompound (beforeRender)="onLODBeforeRender($any($event))">
             <ng-content />
         </ngt-lOD>
     `,
@@ -24,6 +24,10 @@ export class NgtsDetailed extends NgtRxStore implements OnInit {
 
     ngOnInit() {
         this.updateLodChildren();
+    }
+
+    onLODBeforeRender({ object, state }: NgtBeforeRenderEvent<THREE.LOD>) {
+        object.update(state.camera);
     }
 
     private updateLodChildren() {
