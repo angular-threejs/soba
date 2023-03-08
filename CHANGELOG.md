@@ -1,5 +1,12 @@
 
 
+### [1.11.1](https://github.com/angular-threejs/soba/compare/1.11.0...1.11.1) (2023-03-08)
+
+
+### Bug Fixes
+
+* clean up selections from rx-state ([d2bf885](https://github.com/angular-threejs/soba/commit/d2bf88549f4fea3f422bd92e6f8df6a2b851c108))
+
 ## [1.11.0](https://github.com/angular-threejs/soba/compare/1.10.0...1.11.0) (2023-03-06)
 
 
