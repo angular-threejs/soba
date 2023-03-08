@@ -1,5 +1,12 @@
 
 
+### [1.12.1](https://github.com/angular-threejs/soba/compare/1.12.0...1.12.1) (2023-03-08)
+
+
+### Bug Fixes
+
+* adjust animations API ([ec34683](https://github.com/angular-threejs/soba/commit/ec34683555d2ce3d9f95827e27440900fc5b93bc))
+
 ## [1.12.0](https://github.com/angular-threejs/soba/compare/1.11.1...1.12.0) (2023-03-08)
 
 
