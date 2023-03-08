@@ -1,5 +1,12 @@
 
 
+## [1.12.0](https://github.com/angular-threejs/soba/compare/1.11.1...1.12.0) (2023-03-08)
+
+
+### Features
+
+* add animations inject function ([9375300](https://github.com/angular-threejs/soba/commit/93753006161d65133f6773de4712865dd35949fd))
+
 ### [1.11.1](https://github.com/angular-threejs/soba/compare/1.11.0...1.11.1) (2023-03-08)
 
 
