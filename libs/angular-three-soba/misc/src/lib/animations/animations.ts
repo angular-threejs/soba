@@ -1,8 +1,8 @@
 import { injectBeforeRender, injectNgtDestroy, injectNgtRef, is, NgtInjectedRef } from 'angular-three';
-import { isObservable, Observable, Subscription } from 'rxjs';
 import { AnimationMixer } from 'three';
 
 type Api<T extends THREE.AnimationClip> = {
+    (clips: T[], object?: THREE.Object3D | NgtInjectedRef<THREE.Object3D>): void;
     ref: NgtInjectedRef<THREE.Object3D>;
     clips: THREE.AnimationClip[];
     mixer: THREE.AnimationMixer;
@@ -10,59 +10,64 @@ type Api<T extends THREE.AnimationClip> = {
     actions: { [key in T['name']]: THREE.AnimationAction | null };
 };
 
-export function injectNgtsAnimations<T extends THREE.AnimationClip>(
-    clips: T[],
-    object?: Observable<THREE.Object3D> | THREE.Object3D | NgtInjectedRef<THREE.Object3D>
-): Api<T> {
+export function injectNgtsAnimations<T extends THREE.AnimationClip>() {
     let ref = injectNgtRef<THREE.Object3D>();
 
-    let sub: Subscription;
-
-    if (object) {
-        if (isObservable(object)) {
-            sub = object.subscribe((val) => {
-                ref.nativeElement = val;
-            });
-        } else if (is.ref(object)) {
-            ref = object;
-        } else {
-            ref.nativeElement = object;
-        }
-    }
-
-    const mixer = new AnimationMixer(ref.nativeElement);
-
-    let cached = {} as { [key in T['name']]: THREE.AnimationAction | null };
-    const actions = {} as { [key in T['name']]: THREE.AnimationAction | null };
-    const names = [] as T['name'][];
-
-    for (const clip of clips) {
-        names.push(clip.name);
-        Object.defineProperty(actions, clip.name, {
-            enumerable: true,
-            get: () => {
-                if (ref.nativeElement) {
-                    const name = clip.name as keyof typeof cached;
-                    return cached[name] || (cached[name] = mixer.clipAction(clip, ref.nativeElement));
-                }
-            },
-        });
-    }
-
-    const api = { ref, clips, actions, names, mixer };
+    const mixer = new AnimationMixer(null!);
+    const cleanUps = [] as (() => void)[];
 
     injectNgtDestroy(() => {
-        if (sub) sub.unsubscribe();
-        cached = {} as { [key in T['name']]: THREE.AnimationAction | null };
-        Object.values(api.actions).forEach((action) => {
-            if (ref.nativeElement) {
-                mixer.uncacheAction(action as THREE.AnimationClip, ref.nativeElement);
-            }
-        });
-        mixer.stopAllAction();
+        cleanUps.forEach((cleanUp) => cleanUp());
     });
 
     injectBeforeRender(({ delta }) => mixer.update(delta));
 
-    return api;
+    const api = <T extends THREE.AnimationClip>(
+        clips: T[],
+        object?: THREE.Object3D | NgtInjectedRef<THREE.Object3D>
+    ) => {
+        let cached = {} as { [key in T['name']]: THREE.AnimationAction | null };
+        const actions = {} as { [key in T['name']]: THREE.AnimationAction | null };
+        const names = [] as T['name'][];
+
+        if (object) {
+            if (is.ref(object)) {
+                ref = object;
+            } else {
+                ref.nativeElement = object;
+            }
+        }
+
+        for (const clip of clips) {
+            names.push(clip.name);
+            Object.defineProperty(actions, clip.name, {
+                enumerable: true,
+                get: () => {
+                    if (ref.nativeElement) {
+                        const name = clip.name as keyof typeof cached;
+                        return cached[name] || (cached[name] = mixer.clipAction(clip, ref.nativeElement));
+                    }
+                },
+            });
+        }
+
+        cleanUps.push(() => {
+            cached = {} as { [key in T['name']]: THREE.AnimationAction | null };
+            Object.values(actions).forEach((action) => {
+                if (ref.nativeElement) {
+                    mixer.uncacheAction(action as THREE.AnimationClip, ref.nativeElement);
+                }
+            });
+            mixer.stopAllAction();
+        });
+
+        (api as Api<T>).clips = clips;
+        (api as Api<T>).actions = actions;
+        (api as Api<T>).names = names;
+    };
+
+    api.ref = ref;
+    api.mixer = mixer;
+
+    return api as Api<T>;
 }
