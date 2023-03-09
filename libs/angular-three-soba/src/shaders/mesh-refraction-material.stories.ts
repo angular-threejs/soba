@@ -77,8 +77,6 @@ class Diamond {
         <ngt-spot-light [position]="[5, 5, -10]" [angle]="0.15" [penumbra]="1" />
         <ngt-point-light [position]="-10" />
 
-        <Diamond />
-
         <ngts-caustics
             color="#FF8F20"
             [position]="[0, -0.5, 0]"
@@ -98,6 +96,8 @@ class Diamond {
                 />
             </ngt-mesh>
         </ngts-caustics>
+
+        <Diamond />
 
         <ngt-mesh [castShadow]="true" [receiveShadow]="true" [position]="[1.75, 0.25, 1]" [scale]="0.75">
             <ngt-sphere-geometry *args="[1, 64, 64]" />

@@ -11,3 +11,4 @@ export * from './lib/mesh-wobble-material/mesh-wobble-material';
 export * from './lib/shader-material/shader-material';
 export * from './lib/soft-shadow-material/soft-shadow-material';
 export * from './lib/spot-light-material/spot-light-material';
+export * from './lib/star-field-material/star-field-material';
