@@ -74,4 +74,3 @@ export const Default: StoryObj = {
         random: true,
     },
 };
-

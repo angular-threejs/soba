@@ -56,7 +56,7 @@ type CausticsProjectionMaterialType = THREE.MeshNormalMaterial & {
     lightViewMatrix?: THREE.Matrix4;
 };
 
-function createNormalMaterial(side = THREE.FrontSide) {
+function createNormalMaterial(side: THREE.Side = THREE.FrontSide) {
     const viewMatrix = { value: new THREE.Matrix4() };
     return Object.assign(new THREE.MeshNormalMaterial({ side }), {
         viewMatrix,
