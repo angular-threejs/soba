@@ -1,3 +1,7 @@
+
+
+### [1.12.3](https://github.com/angular-threejs/soba/compare/1.12.2...1.12.3) (2023-03-31)
+
 ### [1.12.2](https://github.com/angular-threejs/soba/compare/1.12.1...1.12.2) (2023-03-08)
 
 ### Bug Fixes
