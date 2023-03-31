@@ -1,5 +1,12 @@
 
 
+### [1.12.4](https://github.com/angular-threejs/soba/compare/1.12.3...1.12.4) (2023-03-31)
+
+
+### Bug Fixes
+
+* adjust inject animations ([66bd4ef](https://github.com/angular-threejs/soba/commit/66bd4ef9f693d18d7bec4bc2aec0dd6a23475229))
+
 ### [1.12.3](https://github.com/angular-threejs/soba/compare/1.12.2...1.12.3) (2023-03-31)
 
 ### [1.12.2](https://github.com/angular-threejs/soba/compare/1.12.1...1.12.2) (2023-03-08)
