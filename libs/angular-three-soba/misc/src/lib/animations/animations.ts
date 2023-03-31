@@ -1,7 +1,7 @@
 import { injectBeforeRender, injectNgtDestroy, injectNgtRef, NgtInjectedRef } from 'angular-three';
-import { Observable, takeUntil } from 'rxjs';
+import { map, Observable, switchMap, takeUntil } from 'rxjs';
 import * as THREE from 'three';
-import { GLTF } from 'three-stdlib';
+import { AnimationClip } from 'three';
 
 type Api = {
     ref: NgtInjectedRef<THREE.Object3D>;
@@ -12,10 +12,19 @@ type Api = {
 };
 
 export function injectNgtsAnimations(
-    gltf$: Observable<GLTF>,
-    modelSelector: (gltf: GLTF) => THREE.Object3D = (gltf) => gltf.scene
+    animations$: Observable<AnimationClip[]>,
+    ref?: NgtInjectedRef<THREE.Object3D> | THREE.Object3D
 ): Api {
-    const ref = injectNgtRef<THREE.Object3D>();
+    let actualRef = injectNgtRef<THREE.Object3D>();
+
+    if (ref) {
+        if (ref instanceof THREE.Object3D) {
+            actualRef.nativeElement = ref;
+        } else {
+            actualRef = ref;
+        }
+    }
+
     const mixer = new THREE.AnimationMixer(null!);
     const actions = {} as Record<string, THREE.AnimationAction>;
     let cached = {} as Record<string, THREE.AnimationAction>;
@@ -28,8 +37,8 @@ export function injectNgtsAnimations(
         cached = {};
         // uncache actions
         Object.values(actions).forEach((action) => {
-            if (ref.nativeElement) {
-                mixer.uncacheAction(action as unknown as THREE.AnimationClip, ref.nativeElement);
+            if (actualRef.nativeElement) {
+                mixer.uncacheAction(action as unknown as THREE.AnimationClip, actualRef.nativeElement);
             }
         });
         // stop all actions
@@ -38,28 +47,27 @@ export function injectNgtsAnimations(
 
     injectBeforeRender(({ delta }) => mixer.update(delta));
 
-    gltf$.pipe(takeUntil(destroy$)).subscribe((gltf) => {
-        const model = modelSelector(gltf);
-        ref.nativeElement = model;
+    actualRef.$.pipe(takeUntil(destroy$))
+        .pipe(switchMap((object) => animations$.pipe(map((animations) => [object, animations] as const))))
+        .subscribe(([object, animations]) => {
+            for (let i = 0; i < animations.length; i++) {
+                const clip = animations[i];
 
-        for (let i = 0; i < gltf.animations.length; i++) {
-            const clip = gltf.animations[i];
+                names.push(clip.name);
+                clips.push(clip);
 
-            names.push(clip.name);
-            clips.push(clip);
+                Object.defineProperty(actions, clip.name, {
+                    enumerable: true,
+                    get: () => {
+                        return cached[clip.name] || (cached[clip.name] = mixer.clipAction(clip, object));
+                    },
+                });
 
-            Object.defineProperty(actions, clip.name, {
-                enumerable: true,
-                get: () => {
-                    return cached[clip.name] || (cached[clip.name] = mixer.clipAction(clip, model));
-                },
-            });
-
-            if (i === 0) {
-                actions[clip.name].play();
+                if (i === 0) {
+                    actions[clip.name].play();
+                }
             }
-        }
-    });
+        });
 
-    return { ref, actions, mixer, names, clips };
+    return { ref: actualRef, actions, mixer, names, clips };
 }
