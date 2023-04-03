@@ -1,6 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input } from '@angular/core';
 import { injectBeforeRender, injectNgtRef, NgtArgs, NgtRxStore } from 'angular-three';
-import { NGTS_DISTORT_MATERIAL_SHADER } from 'angular-three-soba/shaders';
+import { MeshDistortMaterial, NGTS_DISTORT_MATERIAL_SHADER } from 'angular-three-soba/shaders';
 
 @Component({
     selector: 'ngts-mesh-distort-material',
@@ -24,7 +24,7 @@ export class NgtsMeshDistortMaterial extends NgtRxStore {
 
     readonly material = new this.MeshDistortMaterial();
 
-    @Input() materialRef = injectNgtRef<typeof this.MeshDistortMaterial>();
+    @Input() materialRef = injectNgtRef<InstanceType<MeshDistortMaterial>>();
 
     @Input() set time(time: number) {
         this.set({ time });

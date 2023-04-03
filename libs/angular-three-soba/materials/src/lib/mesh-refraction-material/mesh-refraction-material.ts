@@ -36,7 +36,7 @@ const isCubeTexture = (def: THREE.CubeTexture | THREE.Texture): def is THREE.Cub
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class NgtsMeshRefractionMaterial extends NgtRxStore implements OnInit {
-    @Input() materialRef = injectNgtRef<typeof MeshRefractionMaterial.prototype>();
+    @Input() materialRef = injectNgtRef<InstanceType<typeof MeshRefractionMaterial>>();
     /** Environment map */
     @Input() set envMap(envMap: THREE.CubeTexture | THREE.Texture) {
         this.set({ envMap });
