@@ -1,5 +1,17 @@
 
 
+## [1.13.0](https://github.com/angular-threejs/soba/compare/1.12.4...1.13.0) (2023-04-03)
+
+
+### Features
+
+* add cube texture loader ([8bee310](https://github.com/angular-threejs/soba/commit/8bee3107756251ecb9203c6915678c26be4cadd6))
+
+
+### Bug Fixes
+
+* adjust types of ref on custom material shaders ([2af0443](https://github.com/angular-threejs/soba/commit/2af0443501fdbe66566dedaa2c942887d575f430))
+
 ### [1.12.4](https://github.com/angular-threejs/soba/compare/1.12.3...1.12.4) (2023-03-31)
 
 
