@@ -4,6 +4,7 @@ import {
     Camera,
     LinearFilter,
     Mesh,
+    PerspectiveCamera,
     Scene,
     Vector2,
     WebGLRenderer,
@@ -54,7 +55,7 @@ export class BlurPass {
         this.convolutionMaterial.setTexelSize(1.0 / width, 1.0 / height);
         this.convolutionMaterial.setResolution(new Vector2(width, height));
         this.scene = new Scene();
-        this.camera = new Camera();
+        this.camera = new PerspectiveCamera();
         this.convolutionMaterial.uniforms['minDepthThreshold'].value = minDepthThreshold;
         this.convolutionMaterial.uniforms['maxDepthThreshold'].value = maxDepthThreshold;
         this.convolutionMaterial.uniforms['depthScale'].value = depthScale;

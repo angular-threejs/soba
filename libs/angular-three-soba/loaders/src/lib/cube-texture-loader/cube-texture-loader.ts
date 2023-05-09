@@ -8,8 +8,8 @@ export function injectCubeTextureLoader(
 ): Observable<THREE.CubeTexture> {
     const inputs$ = isObservable(files) ? files.pipe(map((f) => [f])) : of([files]);
     return injectNgtLoader(
-        () => THREE.CubeTextureLoader,
         // @ts-expect-error CubeTexture accepts a string[] and pass into loader as [[...]]
+        () => THREE.CubeTextureLoader,
         inputs$,
         (loader) => loader.setPath(path)
     ).pipe(map((textures) => (textures as THREE.CubeTexture[])[0]));
