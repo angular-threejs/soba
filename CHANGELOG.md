@@ -1,5 +1,13 @@
 
 
+## [1.14.0](https://github.com/angular-threejs/soba/compare/1.13.0...1.14.0) (2023-05-09)
+
+
+### Features
+
+* update angular-three ([b82d47d](https://github.com/angular-threejs/soba/commit/b82d47de58f4075c1197de73344c1704edf3c7a6))
+* upgrade nx ([3185677](https://github.com/angular-threejs/soba/commit/318567781d302f76ec33b7b192bcd80c548d1125))
+
 ## [1.13.0](https://github.com/angular-threejs/soba/compare/1.12.4...1.13.0) (2023-04-03)
 
 
