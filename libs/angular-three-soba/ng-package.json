@@ -11,5 +11,5 @@
             "output": "assets"
         }
     ],
-    "allowedNonPeerDependencies": ["@nrwl/devkit"]
+    "allowedNonPeerDependencies": ["@nx/devkit"]
 }
