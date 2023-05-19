@@ -1,5 +1,7 @@
 
 
+### [1.14.1](https://github.com/angular-threejs/soba/compare/1.14.0...1.14.1) (2023-05-19)
+
 ## [1.14.0](https://github.com/angular-threejs/soba/compare/1.13.0...1.14.0) (2023-05-09)
 
 
